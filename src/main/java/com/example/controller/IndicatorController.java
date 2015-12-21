@@ -15,9 +15,10 @@ import java.util.Map;
 import java.util.Calendar;
 
 @Controller
+@RequestMapping("/indicator")
 public class IndicatorController {
 
-    @RequestMapping("/")
+    @RequestMapping
     public String provideLink(String link) {
     	link="http://real-chart.finance.yahoo.com/table.csv?g=d&ignore=.csv&";
         String[] parts=new String("2012-01-15").split("-");
