@@ -92,13 +92,13 @@
                         </goals>
                         <configuration>
                             <artifactItems>
-                                <artifactItem>
-                                    <groupId>com.github.jsimone</groupId>
-                                    <artifactId>webapp-runner</artifactId>
-                                    <version>7.0.34.0</version>
-                                    <destFileName>webapp-runner.jar</destFileName>
-                                </artifactItem>
-                            </artifactItems>
+              			<artifactItem>
+                			<groupId>org.eclipse.jetty</groupId>
+                			<artifactId>jetty-runner</artifactId>
+                			<version>9.3.3.v20150827</version>
+                			<destFileName>jetty-runner.jar</destFileName>
+              			</artifactItem>
+            		</artifactItems>
                         </configuration>
                     </execution>
                 </executions>
