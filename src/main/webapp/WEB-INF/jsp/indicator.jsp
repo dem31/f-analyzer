@@ -23,17 +23,9 @@
             <div class="page-header">
                 <h1>Simple CRUD Page</h1>
             </div>
-            <form:form method="post" action="add" commandName="person" class="form-vertical">
-
-                <form:label path="firstName">First Name</form:label>
-                <form:input path="firstName" />
-                <form:label path="lastName">Last Name</form:label>
-                <form:input path="lastName" />
-                <input type="submit" value="Add Person" class="btn"/>
-            </form:form>
 
 
-            <c:if  test="${!empty peopleList}">
+            <c:if  test="${!empty link}">
                 <h3>People</h3>
                 <table class="table table-bordered table-striped">
                     <thead>
@@ -43,12 +35,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${peopleList}" var="person">
                         <tr>
-                            <td>${person.lastName}, ${person.firstName}</td>
-                            <td><form action="delete/${person.id}" method="post"><input type="submit" class="btn btn-danger btn-mini" value="Delete"/></form></td>
+                            <td>${link}</td>
+                            <td></td>
                         </tr>
-                    </c:forEach>
                     </tbody>
                 </table>
             </c:if>
