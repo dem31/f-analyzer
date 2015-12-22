@@ -24,7 +24,7 @@
                 <h1>Simple CRUD Page</h1>
             </div>
             
-            <form:form method="post" action="add" commandName="indicator" class="form-vertical">
+            <form:form method="post" action="/add" class="form-vertical">
 	            <form:label path="asset">First Name</form:label>
 	            <form:input path="asset" />
 	            <input type="submit" value="Yo" class="btn"/>
