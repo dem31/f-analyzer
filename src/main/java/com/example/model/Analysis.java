@@ -38,7 +38,7 @@ public class Analysis {
         return priceBench;
     }
 
-    public ArrayList<Indicator> getIndicators() {
+    public List<Indicator> getIndicators() {
         return indicators;
     }
 
@@ -51,8 +51,8 @@ public class Analysis {
     private ArrayList<Double> priceBench = new ArrayList<Double>();
     
     @ElementCollection
-    @CollectionTable(name="indicator", joinColumns=@JoinColumn(name="analsis_id"))
-    private ArrayList<Indicator> indicators = new ArrayList<Indicator>();
+    @CollectionTable(name="indicator", joinColumns=@JoinColumn(name="analysis_id"))
+    private List<Indicator> indicators = new ArrayList<Indicator>();
 
     public Double getTe() {
         return te;
