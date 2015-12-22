@@ -23,6 +23,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @Entity
+@Table(name="analysis")
 public class Analysis {
 
     public ArrayList<String> getDates() {
@@ -43,7 +44,7 @@ public class Analysis {
 
     @Id
     @GeneratedValue
-    private Integer id;
+    private Integer analysis_id;
     
     private ArrayList<String> dates = new ArrayList<String>();
     private ArrayList<Double> price = new ArrayList<Double>();
