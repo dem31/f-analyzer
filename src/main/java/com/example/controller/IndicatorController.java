@@ -13,14 +13,15 @@ import com.example.service.PersonService;
 
 import java.util.Map;
 import java.util.Calendar;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/indicator")
 public class IndicatorController {
 
     @RequestMapping
-    public String provideLink(HttpServletRequest request, Model m) {
-    	link="http://real-chart.finance.yahoo.com/table.csv?g=d&ignore=.csv&";
+    public String provideLink(Model m) {
+    	String link="http://real-chart.finance.yahoo.com/table.csv?g=d&ignore=.csv&";
         String[] parts=new String("2012-01-15").split("-");
         String year = String.format("%02d", Calendar.getInstance().get(Calendar.YEAR));
         String month = String.format("%02d", Calendar.getInstance().get(Calendar.MONTH)-1);
