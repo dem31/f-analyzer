@@ -20,6 +20,9 @@ public class Indicator {
     @GeneratedValue
     private Integer indicator_id;
 	
+	@Column(name="analysis_id")
+	private int analysisId;
+	
 	private double alpha;
     private double beta;
     private double perf;
@@ -41,8 +44,9 @@ public class Indicator {
         return vol;
     }
 
-    public Indicator(ArrayList<String> dates, ArrayList<Double> price, ArrayList<Double> priceBench, int period){
-        int last=price.size()-1;
+    public Indicator(ArrayList<String> dates, ArrayList<Double> price, ArrayList<Double> priceBench, int period, int analysisId){
+    	this.analysisId=analysisId;
+    	int last=price.size()-1;
 
         perf=Math.pow(price.get(last)/price.get(last-period), 52/period)-1;
 

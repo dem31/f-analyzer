@@ -51,6 +51,7 @@ public class Analysis {
     private ArrayList<Double> priceBench = new ArrayList<Double>();
     
     @ElementCollection
+    @CollectionTable(name="indicator", joinColumns=@JoinColumn(name="analsis_id"))
     private ArrayList<Indicator> indicators = new ArrayList<Indicator>();
 
     public Double getTe() {
@@ -134,9 +135,9 @@ public class Analysis {
 
 
 
-            indicators.add(new Indicator(dates, price, priceBench, 13));
-            indicators.add(new Indicator(dates, price, priceBench, 26));
-            indicators.add(new Indicator(dates, price, priceBench, 52));
+            indicators.add(new Indicator(dates, price, priceBench, 13, analysis_id));
+            indicators.add(new Indicator(dates, price, priceBench, 26, analysis_id));
+            indicators.add(new Indicator(dates, price, priceBench, 52, analysis_id));
 
         } catch (ParseException e){
             e.printStackTrace();
