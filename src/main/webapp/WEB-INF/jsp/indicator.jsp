@@ -24,11 +24,10 @@
                 <h1>Simple CRUD Page</h1>
             </div>
             
-            <form:form method="post" action="/add" class="form-vertical">
-	            <form:label path="asset">First Name</form:label>
-	            <form:input path="asset" />
+            <form method="post" action="/add" class="form-vertical">
+            	<input type="text" id="asset" name="asset" value=""/>
 	            <input type="submit" value="Yo" class="btn"/>
-            </form:form>
+            </form>
             
             <c:if  test="${!empty link}">
                 <h3>People</h3>
