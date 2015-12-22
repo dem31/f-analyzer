@@ -26,7 +26,7 @@ public class IndicatorController {
         String month = String.format("%02d", Calendar.getInstance().get(Calendar.MONTH)-1);
         String day = String.format("%02d", Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
         link+="e="+day+"&d="+month+"&f="+year+"&b="+parts[2]+"&a="+parts[1]+"&c="+parts[0]+"&s=BNP.PA";
-        m.addAttribute("link", link));
+        m.addAttribute("link", link);
 
         return "indicator";
     }
