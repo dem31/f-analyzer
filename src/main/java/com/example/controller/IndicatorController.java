@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Calendar;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller("indicator")
+//@Controller("indicator")
 public class IndicatorController {
 
     /*
@@ -35,7 +35,7 @@ public class IndicatorController {
         return "indicator";
     }*/
     
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "indicator/add", method = RequestMethod.POST)
     public String addAnalysis(HttpServletRequest request) {
     	String asset=request.getParameter("asset");
         //personService.addPerson(person);
