@@ -13,7 +13,7 @@ import com.example.service.PersonService;
 
 import java.util.Map;
 
-@Controller("/people")
+@Controller("people")
 public class PersonController {
 
     @Autowired

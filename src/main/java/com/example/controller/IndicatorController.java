@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Calendar;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller("/indicator")
+@Controller("indicator")
 public class IndicatorController {
 
     @RequestMapping
