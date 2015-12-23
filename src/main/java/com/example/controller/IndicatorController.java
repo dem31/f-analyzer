@@ -36,7 +36,7 @@ public class IndicatorController {
     }
     
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addPerson(HttpServletRequest request) {
+    public String addAnalysis(HttpServletRequest request) {
     	String asset=request.getParameter("asset");
         //personService.addPerson(person);
 
