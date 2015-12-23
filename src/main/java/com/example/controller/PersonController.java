@@ -14,6 +14,7 @@ import com.example.service.PersonService;
 import java.util.Map;
 
 @Controller
+@RequestMapping("/*")
 public class PersonController {
 
     @Autowired
