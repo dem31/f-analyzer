@@ -13,8 +13,7 @@ import com.example.service.PersonService;
 
 import java.util.Map;
 
-@Controller
-@RequestMapping("/*")
+@Controller("/people")
 public class PersonController {
 
     @Autowired
