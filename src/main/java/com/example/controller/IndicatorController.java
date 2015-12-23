@@ -21,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller("indicator")
 public class IndicatorController {
 
-    @RequestMapping
+    /*
     public String provideLink(Map<String, Object> map) {
     	String link="http://real-chart.finance.yahoo.com/table.csv?g=d&ignore=.csv&";
         String[] parts=new String("2012-01-15").split("-");
@@ -33,7 +33,7 @@ public class IndicatorController {
         map.put("link", link);
 
         return "indicator";
-    }
+    }*/
     
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addAnalysis(HttpServletRequest request) {
