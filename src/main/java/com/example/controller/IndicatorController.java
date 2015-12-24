@@ -41,7 +41,7 @@ public class IndicatorController {
     	String asset=request.getParameter("asset");
         //personService.addPerson(person);
 
-        return "redirect:indicator?asset="+asset;
+        return "redirect:/indicator?asset="+asset;
     }
 
 }
