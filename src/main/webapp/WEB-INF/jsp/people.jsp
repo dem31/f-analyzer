@@ -46,7 +46,7 @@
                     <c:forEach items="${peopleList}" var="person">
                         <tr>
                             <td>${person.lastName}, ${person.firstName}</td>
-                            <td><form action="delete/${person.id}" method="post"><input type="submit" class="btn btn-danger btn-mini" value="Delete"/></form></td>
+                            <td><form action="people/delete/${person.id}" method="post"><input type="submit" class="btn btn-danger btn-mini" value="Delete"/></form></td>
                         </tr>
                     </c:forEach>
                     </tbody>
