@@ -23,7 +23,7 @@
             <div class="page-header">
                 <h1>Simple CRUD Page</h1>
             </div>
-            <form:form method="post" action="add" commandName="person" class="form-vertical">
+            <form:form method="post" action="people/add" commandName="person" class="form-vertical">
 
                 <form:label path="firstName">First Name</form:label>
                 <form:input path="firstName" />
