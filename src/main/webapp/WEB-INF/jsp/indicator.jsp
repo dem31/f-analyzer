@@ -25,8 +25,9 @@
             </div>
             
             <form method="post" action="indicator/add" class="form-vertical">
-            	<input type="text" id="asset" name="asset" value=""/>
-	            <input type="submit" value="Yo" class="btn"/>
+            	<input type="text" id="Asset ID" name="asset" value=""/>
+            	<input type="text" id="Benchmark ID" name="bench" value=""/>
+	            <input type="submit" class="btn"/>
             </form>
             
             <c:if  test="${!empty link}">

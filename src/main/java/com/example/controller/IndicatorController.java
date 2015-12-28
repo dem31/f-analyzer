@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.example.model.Analysis;
 import com.example.model.Person;
 import com.example.service.PersonService;
 
@@ -39,9 +40,12 @@ public class IndicatorController {
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String addAnalysis(HttpServletRequest request) {
     	String asset=request.getParameter("asset");
+    	String bench=request.getParameter("bench");
         //personService.addPerson(person);
-
-        return "redirect:/indicator?asset="+asset;
+    	String link="http://real-chart.finance.yahoo.com/table.csv?g=d&ignore=.csv&e=28&d=10&f=2015&b=15&a=01&c=2012&s=";
+    	Analysis a=new Analysis(link+asset, link+bench);
+    	
+        return "redirect:/indicator?analysis="+a.getTe();
     }
 
 }
