@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.model.Analysis;
 import com.example.model.Person;
+import com.example.service.AnalysisService;
 import com.example.service.PersonService;
 
 import java.util.Map;
@@ -22,6 +23,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("indicator")
 public class IndicatorController {
+	
+	@Autowired
+    private AnalysisService analysisService;
 
 	@RequestMapping
     public String provideLink(Map<String, Object> map) {
@@ -44,6 +48,7 @@ public class IndicatorController {
         //personService.addPerson(person);
     	String link="http://real-chart.finance.yahoo.com/table.csv?g=d&ignore=.csv&e=28&d=10&f=2015&b=15&a=01&c=2012&s=";
     	Analysis a=new Analysis(link+asset, link+bench);
+    	analysisService.addAnalysis(a);
     	
         return "redirect:/indicator?analysis="+a.getTe();
     }

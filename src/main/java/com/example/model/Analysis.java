@@ -17,54 +17,27 @@ import javax.persistence.Id;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+import javax.persistence.OneToMany;
+import javax.persistence.FetchType;
+import javax.persistence.CascadeType;
 
 @Entity
 @Table(name="analysis")
-public class Analysis {
-
-    public ArrayList<String> getDates() {
-        return dates;
-    }
-
-    public ArrayList<Double> getPrice() {
-        return price;
-    }
-
-    public ArrayList<Double> getPriceBench() {
-        return priceBench;
-    }
-
-    public List<Indicator> getIndicators() {
-        return indicators;
-    }
-
-    @Id
-    @GeneratedValue
-    private Integer analysis_id;
-    
-    private ArrayList<String> dates = new ArrayList<String>();
-    private ArrayList<Double> price = new ArrayList<Double>();
-    private ArrayList<Double> priceBench = new ArrayList<Double>();
-    
-    @ElementCollection
-    @CollectionTable(name="indicator", joinColumns=@JoinColumn(name="analysis_id"))
+public class Analysis implements java.io.Serializable {
+	
+    private Integer analysisId;
+    private List<String> dates = new ArrayList<String>();
+    private List<Double> price = new ArrayList<Double>();
+    private List<Double> priceBench = new ArrayList<Double>();
     private List<Indicator> indicators = new ArrayList<Indicator>();
-
-    public Double getTe() {
-        return te;
-    }
-
-    public Double getIr() {
-        return ir;
-    }
-
     private Double te;
     private Double ir;
-
+    
+    public Analysis(){}
+    
     public Analysis(String link, String bench){
 
         URL stockURL = null;
@@ -135,9 +108,9 @@ public class Analysis {
 
 
 
-            indicators.add(new Indicator(dates, price, priceBench, 13, analysis_id));
-            indicators.add(new Indicator(dates, price, priceBench, 26, analysis_id));
-            indicators.add(new Indicator(dates, price, priceBench, 52, analysis_id));
+            indicators.add(new Indicator(this, dates, price, priceBench, 13));
+            indicators.add(new Indicator(this, dates, price, priceBench, 26));
+            indicators.add(new Indicator(this, dates, price, priceBench, 52));
 
         } catch (ParseException e){
             e.printStackTrace();
@@ -145,6 +118,72 @@ public class Analysis {
             e.printStackTrace();
         }
     }
+	
+    @Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "ANALYSIS_ID")
+    public Integer getAnalysisId() {
+		return analysisId;
+	}
 
+	public void setAnalysisId(Integer analysisId) {
+		this.analysisId = analysisId;
+	}
+	
+	@ElementCollection
+	@CollectionTable(name = "dates")
+	public List<String> getDates() {
+        return dates;
+    }
+
+	public void setDates(List<String> dates) {
+		this.dates = dates;
+	}
+
+	@ElementCollection
+	@CollectionTable(name = "price")
+	public List<Double> getPrice() {
+        return price;
+    }
+	
+	public void setPrice(List<Double> price) {
+		this.price = price;
+	}
+
+	@ElementCollection
+	@CollectionTable(name = "priceBench")
+	public List<Double> getPriceBench() {
+		return priceBench;
+	}
+	   
+	public void setPriceBench(List<Double> priceBench) {
+		this.priceBench = priceBench;
+	}
+
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "analysis")
+    public List<Indicator> getIndicators() {
+        return indicators;
+    }
+    
+    public void setIndicators(List<Indicator> indicators) {
+		this.indicators = indicators;
+	}
+
+    public Double getTe() {
+        return te;
+    }
+    
+    public void setTe(Double te) {
+		this.te = te;
+	}
+
+    public Double getIr() {
+        return ir;
+    }
+
+	public void setIr(Double ir) {
+		this.ir = ir;
+	}
+	
 }
 
