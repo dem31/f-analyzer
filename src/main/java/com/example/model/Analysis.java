@@ -33,22 +33,29 @@ public class Analysis implements java.io.Serializable {
     private List<Double> price = new ArrayList<Double>();
     private List<Double> priceBench = new ArrayList<Double>();
     private List<Indicator> indicators = new ArrayList<Indicator>();
-    private Double te;
+    private String asset;
+    private String bench;
+    private String startDate;
+	private Double te;
     private Double ir;
     
     public Analysis(){}
     
-    public Analysis(String link, String bench){
+    public Analysis(String link, String asset, String bench, String startDate){
 
+    	this.asset=asset;
+    	this.bench=bench;
+    	this.startDate=startDate;
+    	
         URL stockURL = null;
         try {
-            stockURL = new URL(bench);
+            stockURL = new URL(link+bench);
             BufferedReader in = new BufferedReader(new InputStreamReader(stockURL.openStream()));
             CSVReader reader = new CSVReader(in);
             List<String[]> pathBench = reader.readAll();
             pathBench.remove(0);
 
-            stockURL = new URL(link);
+            stockURL = new URL(link+asset);
             in = new BufferedReader(new InputStreamReader(stockURL.openStream()));
             reader = new CSVReader(in);
             List<String[]> path= reader.readAll();
@@ -184,6 +191,31 @@ public class Analysis implements java.io.Serializable {
 	public void setIr(Double ir) {
 		this.ir = ir;
 	}
+	
+	public String getAsset() {
+		return asset;
+	}
+
+	public void setAsset(String asset) {
+		this.asset = asset;
+	}
+
+	public String getBench() {
+		return bench;
+	}
+
+	public void setBench(String bench) {
+		this.bench = bench;
+	}
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
 	
 }
 
