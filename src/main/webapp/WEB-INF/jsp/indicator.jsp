@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Spring MVC and Hibernate Template</title>
+    <title>Analysis</title>
 
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,29 +20,22 @@
 <div class="container">
     <div class="row">
         <div class="span8 offset2">
-            <div class="page-header">
-                <h1>Simple CRUD Page</h1>
-            </div>
-            
-            <form method="post" action="indicator/add" class="form-vertical">
-            	<input type="text" id="Asset ID" name="asset" value=""/>
-            	<input type="text" id="Benchmark ID" name="bench" value=""/>
-	            <input type="submit" class="btn"/>
-            </form>
-            
             <c:if  test="${!empty link}">
-                <h3>People</h3>
                 <table class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>&nbsp;</th>
+                        <th>Asset</th>
+                        <th>Benchmark</th>
+                        <th>First day</th>
+                        <th>Last day</th>
                     </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>${link}</td>
-                            <td></td>
+                            <td>${link}</td>
+                            <td>${link}</td>
+                            <td>${link}</td>
                         </tr>
                     </tbody>
                 </table>
