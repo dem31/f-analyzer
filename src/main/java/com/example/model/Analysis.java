@@ -136,7 +136,7 @@ public class Analysis{
 		this.analysisId = analysisId;
 	}
 	
-	@ElementCollection
+	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name = "dates")
 	public List<String> getDates() {
         return dates;
