@@ -23,24 +23,38 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
     
     <script type="text/javascript">
-  $(document).ready(function(){
-	  var cosPoints = []; 
-	  for (var i=0; i<2*Math.PI; i+=0.1){ 
-	     cosPoints.push([i, Math.cos(i)]); 
-	  } 
-	  var plot1 = $.jqplot('chartdiv', [cosPoints], {  
-	      series:[{showMarker:false}],
-	      axes:{
-	        xaxis:{
-	          label:'Angle (radians)'
-	        },
-	        yaxis:{
-	          label:'Cosine'
-	        }
-	      }
-	  });
-	});
-  </script>
+    $(document).ready(function(){  
+    	var line1 = [10, 15,12];
+    	var line2 = [12, 12,20];
+    	var ticks = ["4/13/2009","4/15/2009","4/17/2009"];
+    	
+        plot2 = $.jqplot('chartdiv', [line1, line2], { 
+            title: 'Asset', 
+            series: [{ 
+                label: 'Asset', 
+                neighborThreshold: -1 
+            }], 
+            axes: { 
+                xaxis: { 
+                	ticks: ticks
+                    renderer:$.jqplot.DateAxisRenderer,
+                    tickRenderer: $.jqplot.CanvasAxisTickRenderer, 
+                    tickOptions: {
+                      angle: -30
+                    } 
+                }, 
+                yaxis: {  
+                    renderer: $.jqplot.LogAxisRenderer,
+                    tickOptions:{ prefix: '$' } 
+                } 
+            }, 
+            cursor:{
+                show: true, 
+                zoom: true
+            } 
+        });
+    });
+  	</script>
 
 </head>
 
