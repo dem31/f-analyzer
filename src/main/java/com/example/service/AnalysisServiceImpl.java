@@ -40,7 +40,7 @@ public class AnalysisServiceImpl implements AnalysisService {
     	Query query = em.createQuery(hql);
     	query.setParameter("asset",asset);
     	query.setParameter("bench",bench);
-    	query.setParameter("date",date);
+    	query.setParameter("startdate",date);
     	List<Analysis> res = (ArrayList<Analysis>)query.getResultList();
     	if (res.isEmpty()) return null;
     	else return res.get(0);
