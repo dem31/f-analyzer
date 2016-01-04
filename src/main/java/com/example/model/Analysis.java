@@ -166,7 +166,7 @@ public class Analysis{
 		this.priceBench = priceBench;
 	}
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "analysis")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, mappedBy = "analysis")
     public List<Indicator> getIndicators() {
         return indicators;
     }
