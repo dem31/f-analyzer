@@ -136,7 +136,7 @@ public class Analysis{
 		this.analysisId = analysisId;
 	}
 	
-	@ElementCollection(fetch = FetchType.EAGER)
+	@ElementCollection
 	@CollectionTable(name = "dates")
 	public List<String> getDates() {
         return dates;
@@ -146,7 +146,7 @@ public class Analysis{
 		this.dates = dates;
 	}
 
-	@ElementCollection(fetch = FetchType.EAGER)
+	@ElementCollection
 	@CollectionTable(name = "price")
 	public List<Double> getPrice() {
         return price;
@@ -156,7 +156,7 @@ public class Analysis{
 		this.price = price;
 	}
 
-	@ElementCollection(fetch = FetchType.EAGER)
+	@ElementCollection
 	@CollectionTable(name = "priceBench")
 	public List<Double> getPriceBench() {
 		return priceBench;
@@ -166,7 +166,7 @@ public class Analysis{
 		this.priceBench = priceBench;
 	}
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, mappedBy = "analysis")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "analysis")
     public List<Indicator> getIndicators() {
         return indicators;
     }
