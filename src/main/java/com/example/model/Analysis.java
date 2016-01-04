@@ -51,12 +51,14 @@ public class Analysis{
             BufferedReader in = new BufferedReader(new InputStreamReader(stockURL.openStream()));
             CSVReader reader = new CSVReader(in);
             List<String[]> pathBench = reader.readAll();
+            reader.close();
             pathBench.remove(0);
 
             stockURL = new URL(link+asset);
             in = new BufferedReader(new InputStreamReader(stockURL.openStream()));
             reader = new CSVReader(in);
             List<String[]> path= reader.readAll();
+            reader.close();
             path.remove(0);
 
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -110,8 +112,6 @@ public class Analysis{
             te /= price.size()-1;
 
             ir=(Math.pow(priceBench.get(price.size()-1) / priceBench.get(0), 52 / price.size()) - Math.pow(price.get(price.size()-1) / price.get(0), 52 / price.size()))/te ;
-
-
 
             indicators.add(new Indicator(this, dates, price, priceBench, 13));
             indicators.add(new Indicator(this, dates, price, priceBench, 26));
