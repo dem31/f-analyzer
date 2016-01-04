@@ -16,11 +16,13 @@
 </head>
 
 <body>
-
+<div class="page-header">
+    <h1>All constructed indicators</h1>
+</div>
 <div class="container">
     <div class="row">
         <div class="span8 offset2">
-            <c:if  test="${!empty link}">
+            <c:if  test="${!empty analysisList}">
                 <table class="table table-bordered table-striped">
                     <thead>
                     <tr>
@@ -31,12 +33,14 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <c:forEach items="${analysisList}" var="analysis">
                         <tr>
-                            <td>${link}</td>
-                            <td>${link}</td>
-                            <td>${link}</td>
-                            <td>${link}</td>
+                            <td>${analysis.asset}</td>
+                            <td>${analysis.bench}</td>
+                            <td>${analysis.startDate}</td>
+                            <td>${analysis.startDate}</td>
                         </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </c:if>

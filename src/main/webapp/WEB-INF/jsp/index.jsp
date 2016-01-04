@@ -23,7 +23,7 @@
 	<div class="row">
 		<div class="span8 offset2">
 			<div class="page-header">
-                <h1>All requested indicators</h1>
+                <h1>Construct an analysis</h1>
             </div>
             <form method="post" action="indicator/add" class="form-vertical">
             <div class="form-group">
@@ -39,13 +39,14 @@
               </div>
             </div>
             <div class="form-group">
-            <label for="date">Start Date</label>
-            <div class="col-xs-4">
-            	<input type="date" class="form-control" id="date" name="date">
-            </div>
-          </div>
+            	<label for="date">Start Date</label>
+            	<div class="col-xs-4">
+            		<input type="date" class="form-control" id="date" name="date">
+            	</div>
+          	</div>
             <div class="form-group">
-            <button type="submit" class="btn btn-default">Submit</button>
+            	<button type="submit" class="btn btn-default">Submit</button>
+            </div>
           </form>
 		</div>
 	</div>

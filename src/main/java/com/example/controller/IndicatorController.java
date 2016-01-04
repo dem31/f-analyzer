@@ -36,7 +36,9 @@ public class IndicatorController {
         String day = String.format("%02d", Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
         link+="e="+day+"&d="+month+"&f="+year+"&b="+parts[2]+"&a="+parts[1]+"&c="+parts[0]+"&s=";
         //link+="BNP.PA"link+="^FCHI";
-        map.put("link", link);
+        //map.put("link", link);
+        map.put("analysis", new Analysis());
+        map.put("analysisList", analysisService.listAnalysis());
 
         return "indicator";
     }
