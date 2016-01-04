@@ -88,7 +88,7 @@
                             <td>${fn:substring(analysis.startDate, 10, 17)}</td>
                             <td>
                             	<form method="post" action="indicator/show">
-              						<input type="hidden" name="id" value="${analysis.id}">
+              						<input type="hidden" name="id" value="${analysis.analysisId}">
             						<button type="submit" class="btn btn-default">Submit</button>
           						</form>
 							</td>
