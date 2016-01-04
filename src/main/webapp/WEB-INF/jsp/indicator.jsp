@@ -36,7 +36,7 @@
             }], 
             axes: { 
                 xaxis: { 
-                	ticks: ticks
+                	ticks: ticks,
                     renderer:$.jqplot.DateAxisRenderer,
                     tickRenderer: $.jqplot.CanvasAxisTickRenderer, 
                     tickOptions: {
