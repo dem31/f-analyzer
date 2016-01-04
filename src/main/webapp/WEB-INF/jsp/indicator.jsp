@@ -13,13 +13,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-   	<script type="text/javascript" src="<c:url value='/js/jquery.jqplot.js' />"></script>
-  	<script type="text/javascript" src="<c:url value='/js/plugins/jqplot.cursor.js' />"></script>
- 	<script type="text/javascript" src="<c:url value='/js/plugins/jqplot.dateAxisRenderer.js' />"></script>
- 	<script type="text/javascript" src="<c:url value='/js/plugins/jqplot.logAxisRenderer.js' />"></script>
- 	<script type="text/javascript" src="<c:url value='/js/plugins/jqplot.canvasTextRenderer.js' />"></script>
- 	<script type="text/javascript" src="<c:url value='/js/plugins/jqplot.canvasAxisTickRenderer.js' />"></script>
- 	<link rel="stylesheet" type="text/css" href="<c:url value='/js/jquery.jqplot.css' />" />
+   	<script type="text/javascript" src="<c:url value='/resources/js/jquery.jqplot.js' />"></script>
+  	<script type="text/javascript" src="<c:url value='/resources/js/plugins/jqplot.cursor.js' />"></script>
+ 	<script type="text/javascript" src="<c:url value='/resources/js/plugins/jqplot.dateAxisRenderer.js' />"></script>
+ 	<script type="text/javascript" src="<c:url value='/resources/js/plugins/jqplot.logAxisRenderer.js' />"></script>
+ 	<script type="text/javascript" src="<c:url value='/resources/js/plugins/jqplot.canvasTextRenderer.js' />"></script>
+ 	<script type="text/javascript" src="<c:url value='/resources/js/plugins/jqplot.canvasAxisTickRenderer.js' />"></script>
+ 	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/js/jquery.jqplot.css' />" />
     <link href="//netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
     
     <script type="text/javascript">

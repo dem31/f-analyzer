@@ -21,6 +21,8 @@
         <property name="prefix" value="/WEB-INF/jsp/" />
         <property name="suffix" value=".jsp" />
     </bean>
+    
+    <mvc:resources mapping="/resources/**" location="/resources/"  />
 
     <tx:annotation-driven />
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
