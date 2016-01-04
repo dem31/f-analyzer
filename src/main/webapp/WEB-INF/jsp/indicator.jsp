@@ -29,13 +29,11 @@
     	var ticks = ["4/13/2009","4/15/2009","4/17/2009","4/19/2009","4/21/2009","4/23/2009"];
     	
         plot2 = $.jqplot('chartdiv', [line1, line2], { 
-            title: 'Asset', 
-            series: [{ 
-                label: 'Asset', 
-                neighborThreshold: -1 
-            },
-            {yaxis: 'yaxis'},
-            {yaxis: 'y2axis'}], 
+            title: 'Asset',
+            series:[
+                {yaxis:'yaxis', label:'dataForAxis1'},
+                {yaxis:'y2axis', label:'dataForAxis2'}
+            ], 
             axes: { 
                 xaxis: { 
                 	ticks: ticks,
@@ -44,10 +42,14 @@
                     tickOptions: {
                       angle: -30
                     } 
-                }, 
-                yaxis: {  
-                    tickOptions:{ prefix: '$' } 
-                } 
+                },
+                yaxis: {
+                	tickOptions:{ prefix: '$' },
+                    label: 'axis1',                     
+                },
+                y2axis: {
+                    label: 'axis2',                      
+                }
             }, 
             cursor:{
                 show: true, 
