@@ -36,7 +36,7 @@ public class AnalysisServiceImpl implements AnalysisService {
     
     @Transactional
     public Analysis findAnalysis(String asset, String bench, String date) {
-    	String hql = "FROM Analysis WHERE asset=:asset AND bench=:bench AND date=:date";
+    	String hql = "FROM Analysis WHERE asset=:asset AND bench=:bench AND startdate=:startdate";
     	Query query = em.createQuery(hql);
     	query.setParameter("asset",asset);
     	query.setParameter("bench",bench);
