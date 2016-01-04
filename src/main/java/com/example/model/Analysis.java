@@ -20,6 +20,7 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Table;
+import org.joda.time.LocalDate;
 import javax.persistence.OneToMany;
 import javax.persistence.CascadeType;
 
@@ -62,30 +63,24 @@ public class Analysis{
             reader.close();
             path.remove(0);
 
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Calendar cal = Calendar.getInstance();
+            //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            //Calendar cal = Calendar.getInstance();
 
             int size=pathBench.size();
             double d0=Double.parseDouble(pathBench.get(size-1)[6]);
-            Date cursorDate = sdf.parse(pathBench.get(size-1)[0]);
-            cal.setTime(cursorDate);
+            LocalDate cursorDate = new LocalDate(pathBench.get(size-1)[0]);
+            //cal.setTime(cursorDate);
             for (int i=pathBench.size()-1; i>=0; i--){
-                if (pathBench.get(i)[0].equals(sdf.format(cursorDate))) {
+                if (pathBench.get(i)[0].equals(cursorDate.toString("yyyy-MM-dd"))) {
                     dates.add(pathBench.get(i)[0]);
                     priceBench.add(Double.parseDouble(pathBench.get(i)[6]) * 100 / d0);
-                    cal.add(Calendar.DATE, 7);
-                    cursorDate = new Date(cal.get(Calendar.YEAR)-1900,
-                            cal.get(Calendar.MONTH),
-                            cal.get(Calendar.DAY_OF_MONTH));
-                } else if (pathBench.get(i)[0].compareTo(sdf.format(cursorDate))>0) {
+                    cursorDate.plusDays(7);
+                } else if (pathBench.get(i)[0].compareTo(cursorDate.toString("yyyy-MM-dd"))>0) {
                     int j=0;
-                    while (pathBench.get(i-j)[0].compareTo(sdf.format(cursorDate))>0 && i-j>0 && j<3) j++;
+                    while (pathBench.get(i-j)[0].compareTo(cursorDate.toString("yyyy-MM-dd"))>0 && i-j>0 && j<3) j++;
                     dates.add(pathBench.get(i-j)[0]);
                     priceBench.add(Double.parseDouble(pathBench.get(i - j)[6]) * 100 / d0);
-                    cal.add(Calendar.DATE, 7);
-                    cursorDate = new Date(cal.get(Calendar.YEAR)-1900,
-                            cal.get(Calendar.MONTH),
-                            cal.get(Calendar.DAY_OF_MONTH));
+                    cursorDate.plusDays(7);
                 }
             }
 
@@ -118,8 +113,6 @@ public class Analysis{
             indicators.add(new Indicator(this, dates, price, priceBench, 26));
             indicators.add(new Indicator(this, dates, price, priceBench, 52));
 
-        } catch (ParseException e){
-            e.printStackTrace();
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -136,7 +129,7 @@ public class Analysis{
 		this.analysisId = analysisId;
 	}
 	
-	@ElementCollection(fetch=FetchType.EAGER)
+	@ElementCollection
 	public List<String> getDates() {
         return dates;
     }
