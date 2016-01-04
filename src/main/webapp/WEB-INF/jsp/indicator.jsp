@@ -33,7 +33,9 @@
             series: [{ 
                 label: 'Asset', 
                 neighborThreshold: -1 
-            }], 
+            },
+            {yaxis: 'yaxis'},
+            {yaxis: 'y2axis'}], 
             axes: { 
                 xaxis: { 
                 	ticks: ticks,
