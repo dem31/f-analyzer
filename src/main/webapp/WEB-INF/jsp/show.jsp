@@ -80,6 +80,7 @@
                     <tr>
                         <th>a</th>
                         <th>b</th>
+                        <th>start date</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -87,6 +88,7 @@
                         <tr>
                             <td>${a.beta}</td>
                             <td>${a.alpha}</td>
+                            <td>${a.dates[0]}</td>
                         </tr>
                     </c:forEach>
                     </tbody>
