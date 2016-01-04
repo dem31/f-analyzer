@@ -1,6 +1,5 @@
 package com.example.model;
 
-import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,7 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name="indicator")
-public class Indicator implements java.io.Serializable {
+public class Indicator {
 
     private Integer indicatorId;
 	private Analysis analysis;

@@ -18,15 +18,13 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import static javax.persistence.GenerationType.IDENTITY;
-import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.OneToMany;
-import javax.persistence.FetchType;
 import javax.persistence.CascadeType;
 
 @Entity
 @Table(name="analysis")
-public class Analysis implements java.io.Serializable {
+public class Analysis{
 	
     private Integer analysisId;
     private List<String> dates = new ArrayList<String>();

@@ -2,6 +2,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <html>
 <head>
@@ -16,12 +17,12 @@
 </head>
 
 <body>
-<div class="page-header">
-    <h1>All constructed indicators</h1>
-</div>
 <div class="container">
     <div class="row">
         <div class="span8 offset2">
+        	<div class="page-header">
+    			<h1>All constructed indicators</h1>
+			</div>
             <c:if  test="${!empty analysisList}">
                 <table class="table table-bordered table-striped">
                     <thead>
@@ -37,8 +38,8 @@
                         <tr>
                             <td>${analysis.asset}</td>
                             <td>${analysis.bench}</td>
-                            <td>${analysis.startDate}</td>
-                            <td>${analysis.startDate}</td>
+                            <td>${fn:substring(analysis.startDate, 0, 9)}</td>
+                            <td>${fn:substring(analysis.startDate, 10, 17)}</td>
                         </tr>
                     </c:forEach>
                     </tbody>
