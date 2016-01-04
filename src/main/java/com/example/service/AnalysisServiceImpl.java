@@ -41,7 +41,7 @@ public class AnalysisServiceImpl implements AnalysisService {
     	query.setParameter("asset",asset);
     	query.setParameter("bench",bench);
     	query.setParameter("startdate",date);
-    	Query q = em.createNativeQuery("insert into Person(id, first_name, last_name) values(3, '"+asset+bench+"', '"+date+"')");
+    	Query q = em.createNativeQuery("insert into Person(id, firstname, lastname) values(3, '"+asset+bench+"', '"+date+"')");
     	q.executeUpdate();
     	List<Analysis> res = (ArrayList<Analysis>)query.getResultList();
     	if (res.isEmpty()) return null;
