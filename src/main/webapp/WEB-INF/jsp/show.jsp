@@ -73,14 +73,13 @@
     <div class="row">
         <div class="span8 offset2">
         	<div class="page-header">
-    			<h1>All constructed indicators</h1>
+    			<h1>All constructed indicators </h1>${analysis.dates[0]}
 			</div>
             <table class="table table-bordered table-striped">
                     <thead>
                     <tr>
                         <th>a</th>
                         <th>b</th>
-                        <th>start date</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -88,7 +87,6 @@
                         <tr>
                             <td>${a.beta}</td>
                             <td>${a.alpha}</td>
-                            <td>${a.dates[0]}</td>
                         </tr>
                     </c:forEach>
                     </tbody>
