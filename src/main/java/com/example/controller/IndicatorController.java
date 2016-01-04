@@ -54,7 +54,7 @@ public class IndicatorController {
         String day = String.format("%02d", Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
         link+="e="+day+"&d="+month+"&f="+year+"&b="+parts[2]+"&a="+parts[1]+"&c="+parts[0]+"&s=";
     	
-        Analysis a=analysisService.findAnalysis(asset, bench, date);
+        Analysis a=analysisService.findAnalysis(asset, bench, date+year+month+day);
         if (a==null){
         	a=new Analysis(link, asset, bench, date+year+month+day);
         	analysisService.addAnalysis(a);
