@@ -24,9 +24,9 @@
     
     <script type="text/javascript">
     $(document).ready(function(){  
-    	var line1 = [10, 15,12];
-    	var line2 = [12, 12,20];
-    	var ticks = ["4/13/2009","4/15/2009","4/17/2009"];
+    	var line1 = [9,  13, 14, 16, 17, 19];
+    	var line2 = [15, 17, 16, 18, 13, 11];
+    	var ticks = ["4/13/2009","4/15/2009","4/17/2009","4/19/2009","4/21/2009","4/23/2009"];
     	
         plot2 = $.jqplot('chartdiv', [line1, line2], { 
             title: 'Asset', 
@@ -44,7 +44,6 @@
                     } 
                 }, 
                 yaxis: {  
-                    renderer: $.jqplot.LogAxisRenderer,
                     tickOptions:{ prefix: '$' } 
                 } 
             }, 
