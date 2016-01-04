@@ -31,8 +31,8 @@
         plot2 = $.jqplot('chartdiv', [line1, line2], { 
             title: 'Asset', 
             series: [
-                {yaxis:'yaxis', label:'dataForAxis1'},
-            	{yaxis:'yaxis', label:'dataForAxis2'} 
+                {yaxis:'yaxis', label:'dataForAxis1', lineWidth:2 },
+            	{yaxis:'yaxis', label:'dataForAxis2', lineWidth:2 } 
             ], 
             axes: { 
                 xaxis: { 
