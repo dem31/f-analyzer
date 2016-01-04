@@ -12,6 +12,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.CollectionTable;
@@ -135,7 +136,7 @@ public class Analysis{
 		this.analysisId = analysisId;
 	}
 	
-	@ElementCollection
+	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "dates")
 	public List<String> getDates() {
         return dates;
@@ -145,7 +146,7 @@ public class Analysis{
 		this.dates = dates;
 	}
 
-	@ElementCollection
+	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "price")
 	public List<Double> getPrice() {
         return price;
@@ -155,7 +156,7 @@ public class Analysis{
 		this.price = price;
 	}
 
-	@ElementCollection
+	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "priceBench")
 	public List<Double> getPriceBench() {
 		return priceBench;
@@ -165,7 +166,7 @@ public class Analysis{
 		this.priceBench = priceBench;
 	}
 
-    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "analysis")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "analysis")
     public List<Indicator> getIndicators() {
         return indicators;
     }
