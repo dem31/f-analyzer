@@ -137,7 +137,6 @@ public class Analysis{
 	}
 	
 	@ElementCollection(fetch=FetchType.EAGER)
-	@CollectionTable(name = "dates")
 	public List<String> getDates() {
         return dates;
     }
