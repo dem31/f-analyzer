@@ -2,13 +2,11 @@ package com.example.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.example.model.Analysis;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -36,11 +34,17 @@ public class AnalysisServiceImpl implements AnalysisService {
     	query.setParameter("asset",asset);
     	query.setParameter("bench",bench);
     	query.setParameter("startdate",date);
-    	//Query q = em.createNativeQuery("insert into Person(id, firstname, lastname) values(3, '"+asset+bench+"', '"+date+"')");
-    	//q.executeUpdate();
-    	List<Analysis> res = (ArrayList<Analysis>)query.getResultList();
+    	List<?> res = query.getResultList();
     	if (res.isEmpty()) return null;
-    	else return res.get(0);
+    	else return (Analysis) res.get(0);
+    }
+    
+    @Transactional
+    public Analysis findAnalysisById(Integer id) {
+    	String hql = "FROM Analysis WHERE analysis_id=:id";
+    	Query query = em.createQuery(hql);
+    	query.setParameter("id",id);
+    	return (Analysis) query.getResultList().get(0);
     }
 
     @Transactional

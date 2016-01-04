@@ -23,6 +23,12 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
     
     <script type="text/javascript">
+    var arr = new Array();  
+    <%-- <c:forEach items="${CustomFieldDetails}" var="current" varStatus="status">
+        arr[i] = '<c:out value='${analysisList[0].shortName}'/>';     
+        i++;
+     </c:forEach> --%>
+    
     $(document).ready(function(){ 
     	var line1 = [9.0,  13.0, 14.0, 16.0, 17.0, 19.0];
     	var line2 = [15.0, 17.0, 16.0, 18.0, 13.0, 11.0];
@@ -69,34 +75,22 @@
         	<div class="page-header">
     			<h1>All constructed indicators</h1>
 			</div>
-            <c:if  test="${!empty analysisList}">
-                <table class="table table-bordered table-striped">
+            <table class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>Asset</th>
-                        <th>Benchmark</th>
-                        <th>First day</th>
-                        <th>Last day</th>
+                        <th>a</th>
+                        <th>b</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${analysisList}" var="analysis">
+                    <c:forEach items="${analysis.indicators}" var="a">
                         <tr>
-                            <td>${analysis.asset}</td>
-                            <td>${analysis.bench}</td>
-                            <td>${fn:substring(analysis.startDate, 0, 9)}</td>
-                            <td>${fn:substring(analysis.startDate, 10, 17)}</td>
-                            <td>
-                            	<form method="post" action="indicator/show">
-              						<input type="hidden" name="id" value="${analysis.id}">
-            						<button type="submit" class="btn btn-default">Submit</button>
-          						</form>
-							</td>
+                            <td>${a.beta}</td>
+                            <td>${a.alpha}</td>
                         </tr>
                     </c:forEach>
                     </tbody>
                 </table>
-            </c:if>
             <div id="chartdiv"></div>
         </div>
     </div>

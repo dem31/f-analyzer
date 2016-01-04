@@ -45,5 +45,14 @@ public class IndicatorController {
     	
         return "redirect:/indicator";
     }
+    
+    @RequestMapping(value = "show", method = RequestMethod.POST)
+    public String showAnalysis(Map<String, Object> map, HttpServletRequest request) {
+    	Integer id=Integer.parseInt(request.getParameter("id"));
+        Analysis a=analysisService.findAnalysisById(id);
+        map.put("analysis", a);
+    	
+        return "show";
+    }
 
 }
