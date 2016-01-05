@@ -77,7 +77,7 @@
 		<dependency>
 			<groupId>org.jadira.usertype</groupId>
 			<artifactId>usertype.core</artifactId>
-			<version>5.0.0.GA</version>
+			<version>3.1.0.CR11</version>
 		</dependency>
 		
     </dependencies>
