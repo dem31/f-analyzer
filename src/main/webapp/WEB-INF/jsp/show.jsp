@@ -3,6 +3,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="joda" uri="http://www.joda.org/joda/time/tags"%>
 
 <html>
 <head>
@@ -25,13 +26,15 @@
     <script type="text/javascript">
     var price = [
                   <c:forEach var="path" items="${analysis.pricePath}" varStatus="status">
-                    [ <c:out value='"${path.date}"' escapeXml="false"/>, <c:out value="${path.price}"/>]
+                  	<joda:format value="${path.date}" pattern="MM/dd/yyyy" var="date"/>
+                    [ <c:out value='"${date}"' escapeXml="false"/>, <c:out value="${path.price}"/>]
                     <c:if test="${not status.last}">,</c:if>
                   </c:forEach>
     ];
     var priceBench = [
                   <c:forEach var="path" items="${analysis.pricePath}" varStatus="status">
-                    [ <c:out value='"${path.date}"' escapeXml="false"/>, <c:out value="${path.priceBench}"/>]
+                  	<joda:format value="${path.date}" pattern="MM/dd/yyyy" var="date"/>
+                    [ <c:out value='"${date}"' escapeXml="false"/>, <c:out value="${path.priceBench}"/>]
                     <c:if test="${not status.last}">,</c:if>
                   </c:forEach>
     ];
