@@ -24,35 +24,39 @@
     
     <script type="text/javascript">
     $(document).ready(function(){ 
-    	var line1 = [[9.0,"4/13/2009"],  [13.0,"4/15/2009"], [14.0,"4/17/2009"], [16.0,"4/19/2009"], [17.0,"4/21/2009"]];
-    	var line2 = [[15.0,"4/13/2009"], [17.0,"4/15/2009"], [16.0,"4/17/2009"], [18.0,"4/19/2009"], [13.0,"4/21/2009"]];
-    	var ticks = ["4/13/2009","4/15/2009","4/17/2009","4/19/2009","4/21/2009"];
+    	var line1 = [["4/13/2009",9.0],  ["4/15/2009",13.0], ["4/17/2009",14.0]];
+    	var line2 = [["4/13/2009",15.0], ["4/15/2009",17.0], ["4/17/2009",16.0]];
+    	var ticks = ["4/13/2009","4/15/2009","4/17/2009"];
     	
-
-        plot2 = $.jqplot('chartdiv', [line1, line2], { 
-            title: 'Asset', 
-            series: [
-                {yaxis:'yaxis', label:'dataForAxis1'},
-            	{yaxis:'yaxis', label:'dataForAxis2'} 
-            ], 
-            axes: { 
-                xaxis: { 
-                    renderer:$.jqplot.DateAxisRenderer,
+    	var plot2 = $.jqplot('chartdiv', [line1, line2], {
+            title: 'Customized Date Axis',
+            axes: {
+                xaxis: {
+                    renderer: $.jqplot.DateAxisRenderer,
                     tickRenderer: $.jqplot.CanvasAxisTickRenderer, 
                     tickOptions: {
                       angle: -30
-                    } 
-                }, 
-                yaxis: {  
-                    tickOptions:{ prefix: '$' } 
-                } 
-            }, 
+                    },
+                    yaxis: {  
+                        tickOptions:{ prefix: '$' } 
+                    }
+                }
+            },
+            legend: { show: true },
+            series: [{ lineWidth: 4,
+                markerOptions: { style: 'square' }
+
+            }],
+            series: [
+                    { label: 'Toronto' },
+                    { label: 'New York' }
+            ],
             cursor:{
                 show: true, 
                 zoom: true
             } 
         });
-  
+
     });
   	</script>
 
