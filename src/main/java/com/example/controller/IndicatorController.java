@@ -1,6 +1,5 @@
 package com.example.controller;
 
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,7 +50,6 @@ public class IndicatorController {
     public String showAnalysis(Map<String, Object> map, HttpServletRequest request) {
     	Integer id=Integer.parseInt(request.getParameter("id"));
         Analysis a=analysisService.findAnalysisById(id);
-        Hibernate.initialize(a.getPricePath());
         map.put("analysis", a);
     	
         return "show";

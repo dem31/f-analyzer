@@ -1,5 +1,6 @@
 package com.example.service;
 
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.example.model.Analysis;
@@ -44,7 +45,9 @@ public class AnalysisServiceImpl implements AnalysisService {
     	String hql = "FROM Analysis WHERE analysis_id=:id";
     	Query query = em.createQuery(hql);
     	query.setParameter("id",id);
-    	return (Analysis) query.getResultList().get(0);
+    	Analysis a = (Analysis) query.getResultList().get(0);
+    	Hibernate.initialize(a.getPricePath());
+    	return a;
     }
 
     @Transactional
