@@ -24,30 +24,30 @@ public class Indicator {
 	
 	public Indicator(){}
 	
-	public Indicator(Analysis a, List<String> dates, List<Double> price, List<Double> priceBench, int period){
+	public Indicator(Analysis a, List<PriceItem> pricePath, int period){
     	this.analysis=a;
-    	int last=price.size()-1;
+    	int last=pricePath.size()-1;
 
-        perf=Math.pow(price.get(last)/price.get(last-period), 52/period)-1;
+        perf=Math.pow(pricePath.get(last).getPrice()/pricePath.get(last-period).getPrice(), 52/period)-1;
 
-        Double perfBench=Math.pow(priceBench.get(last)/priceBench.get(last-period), 52/period)-1;
+        Double perfBench=Math.pow(pricePath.get(last).getPriceBench()/pricePath.get(last-period).getPriceBench(), 52/period)-1;
 
         Double sum=0.0, summ=0.0;
         for (int i=last; i>last-period; i--)
-            sum += price.get(i);
+            sum += pricePath.get(i).getPrice();
         Double avg=sum/period;
         for (int i=last; i>last-period; i--)
-            sum += priceBench.get(i);
+            sum += pricePath.get(i).getPriceBench();
         Double avgBench=sum/period;
 
         for (int i=last; i>last-period; i--)
-            summ+=Math.pow(price.get(i)-avg, 2);
+            summ+=Math.pow(pricePath.get(i).getPrice()-avg, 2);
         vol=Math.sqrt(period * summ / (period-1));
 
         Double sum1=0.0, sum2=0.0;
         for (int i=last; i>last-period; i--) {
-            sum1 += (price.get(i) - avg) * (priceBench.get(i) - avgBench);
-            sum2 += Math.pow(priceBench.get(i) - avgBench, 2);
+            sum1 += (pricePath.get(i).getPrice() - avg) * (pricePath.get(i).getPriceBench() - avgBench);
+            sum2 += Math.pow(pricePath.get(i).getPriceBench() - avgBench, 2);
         }
         beta=sum1/sum2;
 
