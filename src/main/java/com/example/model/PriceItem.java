@@ -23,7 +23,7 @@ public class PriceItem implements Serializable
     }
     
     @Column
-	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
 	public LocalDateTime getDate() {
 		return date;
 	}
