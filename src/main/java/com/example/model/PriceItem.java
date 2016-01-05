@@ -4,7 +4,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import org.hibernate.annotations.Type;
-import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDateTime;
 
 @Embeddable
@@ -18,13 +17,13 @@ public class PriceItem implements Serializable
     public PriceItem(){}
     
     public PriceItem(String date, Double price, Double priceBench){
-    	this.date=new LocalDateTime(date, DateTimeZone.UTC);
+    	this.date=new LocalDateTime(date);
     	this.price=price;
     	this.priceBench=priceBench;
     }
     
     @Column
-	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	public LocalDateTime getDate() {
 		return date;
 	}
