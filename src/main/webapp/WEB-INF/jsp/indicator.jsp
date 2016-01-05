@@ -24,11 +24,14 @@
     
     <script type="text/javascript">
     $(document).ready(function(){ 
-    	var line1 = [9.0,  13.0, 14.0, 16.0, 17.0, 19.0];
+    	var line1 = [[9.0,  13.0, 14.0, 16.0, 17.0, 19.0];
     	var line2 = [15.0, 17.0, 16.0, 18.0, 13.0, 11.0];
     	var ticks = ["4/13/2009","4/15/2009","4/17/2009","4/19/2009","4/21/2009","4/23/2009"];
     	
-        plot2 = $.jqplot('chartdiv', [line1, line2], { 
+    	var plot = $.jqplot('chartdiv', [line1, line2], {
+    	    xaxis: { ticks: ticks }
+    	});
+        /*plot2 = $.jqplot('chartdiv', [line1, line2], { 
             title: 'Asset', 
             seriesDefaults: {
                 rendererOptions: {
@@ -57,6 +60,7 @@
                 zoom: true
             } 
         });
+        */
     });
   	</script>
 

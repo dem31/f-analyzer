@@ -5,11 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -63,13 +59,9 @@ public class Analysis{
             reader.close();
             path.remove(0);
 
-            //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            //Calendar cal = Calendar.getInstance();
-
             int size=pathBench.size();
             double d0=Double.parseDouble(pathBench.get(size-1)[6]);
             LocalDate cursorDate = new LocalDate(pathBench.get(size-1)[0]);
-            //cal.setTime(cursorDate);
             for (int i=pathBench.size()-1; i>=0; i--){
                 if (pathBench.get(i)[0].equals(cursorDate.toString("yyyy-MM-dd"))) {
                     dates.add(pathBench.get(i)[0]);
