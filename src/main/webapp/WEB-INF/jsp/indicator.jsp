@@ -29,7 +29,16 @@
     	var ticks = ["4/13/2009","4/15/2009","4/17/2009","4/19/2009","4/21/2009","4/23/2009"];
     	
     	var plot = $.jqplot('chartdiv', [line1, line2], {
-    	    xaxis: { ticks: ticks }
+    		title: 'Asset', 
+    	    xaxis: { 
+    	    	ticks: ticks,
+    	    	renderer:$.jqplot.DateAxisRenderer,
+                tickRenderer: $.jqplot.CanvasAxisTickRenderer, 
+                tickOptions: { angle: -30 } 
+    		},
+    		yaxis: {  
+            	tickOptions:{ prefix: '$' } 
+        	} 
     	});
         /*plot2 = $.jqplot('chartdiv', [line1, line2], { 
             title: 'Asset', 
