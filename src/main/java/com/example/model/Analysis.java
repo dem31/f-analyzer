@@ -61,19 +61,23 @@ public class Analysis{
 
             int size=pathBench.size();
             double d0=Double.parseDouble(pathBench.get(size-1)[6]);
+            double b0=Double.parseDouble(pathBench.get(size-1)[5]);
             LocalDate cursorDate = new LocalDate(pathBench.get(size-1)[0]);
             for (int i=pathBench.size()-1; i>=0; i--){
-                if (pathBench.get(i)[0].equals(cursorDate.toString("yyyy-MM-dd"))) {
+            	LocalDate current=new LocalDate(pathBench.get(i)[0]);
+            	if (cursorDate.isEqual(current)) {
+                //if (pathBench.get(i)[0].equals(cursorDate.toString("yyyy-MM-dd"))) {
                     //dates.add(pathBench.get(i)[0]);
                     //priceBench.add(Double.parseDouble(pathBench.get(i)[6]) * 100 / d0);
-                	pricePath.add(new PriceItem(pathBench.get(i)[0], Double.parseDouble(path.get(i)[6])*100/d0, Double.parseDouble(pathBench.get(i)[6])*100/d0));
+                	pricePath.add(new PriceItem(pathBench.get(i)[0], Double.parseDouble(path.get(i)[6])*100/d0, Double.parseDouble(pathBench.get(i)[5])*100/b0));
                     cursorDate.plusDays(7);
-                } else if (pathBench.get(i)[0].compareTo(cursorDate.toString("yyyy-MM-dd"))>0) {
+                //} else if (pathBench.get(i)[0].compareTo(cursorDate.toString("yyyy-MM-dd"))>0) {
+            	} else if (cursorDate.isBefore(current)) {
                     int j=0;
-                    while (pathBench.get(i-j)[0].compareTo(cursorDate.toString("yyyy-MM-dd"))>0 && i-j>0 && j<3) j++;
+                    while (cursorDate.isBefore(new LocalDate(pathBench.get(i-j)[0])) && i-j>0 && j<3) j++;
                     //dates.add(pathBench.get(i-j)[0]);
                     //priceBench.add(Double.parseDouble(pathBench.get(i - j)[6]) * 100 / d0);
-                    pricePath.add(new PriceItem(pathBench.get(i - j)[0], Double.parseDouble(path.get(i - j)[6])*100/d0, Double.parseDouble(pathBench.get(i - j)[6])*100/d0));
+                    pricePath.add(new PriceItem(pathBench.get(i - j)[0], Double.parseDouble(path.get(i - j)[6])*100/d0, Double.parseDouble(pathBench.get(i - j)[5])*100/b0));
                     cursorDate.plusDays(7);
                 }
             }
