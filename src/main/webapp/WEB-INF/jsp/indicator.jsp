@@ -30,9 +30,19 @@
     	
     	var plot = $.jqplot('chartdiv', [line1, line2], {
     		title: 'Asset', 
-    		yaxis: {  
-            	tickOptions:{ prefix: '$' } 
-        	} 
+    		axes: { 
+                xaxis: { 
+                	ticks: ticks,
+                    renderer:$.jqplot.DateAxisRenderer,
+                    tickRenderer: $.jqplot.CanvasAxisTickRenderer, 
+                    tickOptions: {
+                      angle: -30
+                    } 
+                }, 
+                yaxis: {  
+                    tickOptions:{ prefix: '$' } 
+                } 
+            }
     	});
         /*plot2 = $.jqplot('chartdiv', [line1, line2], { 
             title: 'Asset', 
