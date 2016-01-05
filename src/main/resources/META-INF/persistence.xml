@@ -5,6 +5,11 @@
              version="2.0">
 
     <persistence-unit name="dataSource" transaction-type="RESOURCE_LOCAL">
+    	<properties>
+        	<property name="jadira.usertype.autoRegisterUserTypes" value="true"/>
+			<property name="jadira.usertype.databaseZone" value="jvm"/>
+			<property name="jadira.usertype.javaZone" value="jvm"/>
+    	</properties>
     </persistence-unit>
 
 </persistence>
