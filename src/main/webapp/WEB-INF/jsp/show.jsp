@@ -25,13 +25,13 @@
     <script type="text/javascript">
     var price = [
                   <c:forEach var="path" items="${analysis.pricePath}" varStatus="status">
-                    [ <c:out value="${path.date}"/>, <c:out value="${path.price}"/>]
+                    [ <c:out value='"${path.date}"' escapeXml="false"/>, <c:out value="${path.price}"/>]
                     <c:if test="${not status.last}">,</c:if>
                   </c:forEach>
     ];
     var priceBench = [
                   <c:forEach var="path" items="${analysis.pricePath}" varStatus="status">
-                    [ <c:out value="${path.date}"/>, <c:out value="${path.priceBench}"/>]
+                    [ <c:out value='"${path.date}"' escapeXml="false"/>, <c:out value="${path.priceBench}"/>]
                     <c:if test="${not status.last}">,</c:if>
                   </c:forEach>
     ];
@@ -57,8 +57,8 @@
 
             }],
             series: [
-                    { label: '${analysis.asset}' },
-                    { label: '${analysis.bench}' }
+                    { label: "'${analysis.asset}'" },
+                    { label: "'${analysis.bench}'" }
             ],
             cursor:{
                 show: true, 
