@@ -41,7 +41,7 @@
     
     $(document).ready(function(){
   	var plot2 = $.jqplot('chartdiv', [price, priceBench], {
-            title: 'Customized Date Axis',
+            title: 'Asset and benchmark price paths',
             axes: {
                 xaxis: {
                     renderer: $.jqplot.DateAxisRenderer,
@@ -55,13 +55,9 @@
                 }
             },
             legend: { show: true },
-            series: [{ lineWidth: 4,
-                markerOptions: { style: 'square' }
-
-            }],
             series: [
-                    { label: "'${analysis.asset}'" },
-                    { label: "'${analysis.bench}'" }
+                    { label: "${analysis.asset}" },
+                    { label: "${analysis.bench}" }
             ],
             cursor:{
                 show: true, 
