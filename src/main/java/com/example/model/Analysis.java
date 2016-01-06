@@ -65,6 +65,7 @@ public class Analysis{
             	if (cursorDate.isEqual(current)) {
                 	pricePath.add(new PriceItem(pathBench.get(i)[0], Double.parseDouble(path.get(i)[6])*100/d0, Double.parseDouble(pathBench.get(i)[5])*100/b0));
                 	cursorDate=cursorDate.plusDays(7);
+                	System.out.println("price="+Double.parseDouble(path.get(i)[6])+" and d="+d0+" and value="+Double.parseDouble(path.get(i)[6])*100/d0+" and bench="+Double.parseDouble(pathBench.get(i)[5])*100/b0);
             	} else if (cursorDate.isBefore(current)) {
                     int j=0;
                     while (cursorDate.isBefore(new LocalDate(pathBench.get(i-j)[0])) && i-j>0 && j<3) j++;
