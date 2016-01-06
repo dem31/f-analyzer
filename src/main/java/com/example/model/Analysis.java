@@ -57,20 +57,20 @@ public class Analysis{
             path.remove(0);
 
             int size=pathBench.size();
-            double d0=Double.parseDouble(pathBench.get(size-1)[6]);
-            double b0=Double.parseDouble(pathBench.get(size-1)[5]);
+            double d0=Double.parseDouble(path.get(size-1)[6]);
+            double b0=Double.parseDouble(pathBench.get(size-1)[6]);
             LocalDate cursorDate = new LocalDate(pathBench.get(size-1)[0]);
             for (int i=size-1; i>=0; i--){
             	LocalDate current=new LocalDate(pathBench.get(i)[0]);
             	if (cursorDate.isEqual(current)) {
-                	pricePath.add(new PriceItem(pathBench.get(i)[0], Double.parseDouble(path.get(i)[6])*100/d0, Double.parseDouble(pathBench.get(i)[5])*100/b0));
+                	pricePath.add(new PriceItem(pathBench.get(i)[0], Double.parseDouble(path.get(i)[6])*100/d0, Double.parseDouble(pathBench.get(i)[6])*100/b0));
                 	cursorDate=cursorDate.plusDays(7);
-                	System.out.println("price="+Double.parseDouble(path.get(i)[6])+" and d="+d0+" and value="+Double.parseDouble(path.get(i)[6])*100/d0+" and bench="+Double.parseDouble(pathBench.get(i)[5])*100/b0);
-                	System.err.println("errprice="+Double.parseDouble(path.get(i)[6])+" and d="+d0+" and value="+Double.parseDouble(path.get(i)[6])*100/d0+" and bench="+Double.parseDouble(pathBench.get(i)[5])*100/b0);
+                	System.out.println("price="+Double.parseDouble(path.get(i)[6])+" and d="+d0+" and value="+Double.parseDouble(path.get(i)[6])*100/d0+" and bench="+Double.parseDouble(pathBench.get(i)[6])*100/b0);
+                	System.err.println("errprice="+Double.parseDouble(path.get(i)[6])+" and d="+d0+" and value="+Double.parseDouble(path.get(i)[6])*100/d0+" and bench="+Double.parseDouble(pathBench.get(i)[6])*100/b0);
             	} else if (cursorDate.isBefore(current)) {
                     int j=0;
                     while (cursorDate.isBefore(new LocalDate(pathBench.get(i-j)[0])) && i-j>0 && j<3) j++;
-                    pricePath.add(new PriceItem(pathBench.get(i - j)[0], Double.parseDouble(path.get(i - j)[6])*100/d0, Double.parseDouble(pathBench.get(i - j)[5])*100/b0));
+                    pricePath.add(new PriceItem(pathBench.get(i - j)[0], Double.parseDouble(path.get(i - j)[6])*100/d0, Double.parseDouble(pathBench.get(i - j)[6])*100/b0));
                     cursorDate=cursorDate.plusDays(7);
                 }
             }
