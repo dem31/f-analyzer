@@ -24,9 +24,6 @@ import javax.persistence.CascadeType;
 public class Analysis{
 	
     private Integer analysisId;
-    //private List<String> dates = new ArrayList<String>();
-    //private List<Double> price = new ArrayList<Double>();
-    //private List<Double> priceBench = new ArrayList<Double>();
     private List<PriceItem> pricePath = new ArrayList<PriceItem>();
     private List<Indicator> indicators = new ArrayList<Indicator>();
     private String asset;
@@ -63,37 +60,18 @@ public class Analysis{
             double d0=Double.parseDouble(pathBench.get(size-1)[6]);
             double b0=Double.parseDouble(pathBench.get(size-1)[5]);
             LocalDate cursorDate = new LocalDate(pathBench.get(size-1)[0]);
-            for (int i=pathBench.size()-1; i>=0; i--){
+            for (int i=size-1; i>=0; i--){
             	LocalDate current=new LocalDate(pathBench.get(i)[0]);
             	if (cursorDate.isEqual(current)) {
-                //if (pathBench.get(i)[0].equals(cursorDate.toString("yyyy-MM-dd"))) {
-                    //dates.add(pathBench.get(i)[0]);
-                    //priceBench.add(Double.parseDouble(pathBench.get(i)[6]) * 100 / d0);
                 	pricePath.add(new PriceItem(pathBench.get(i)[0], Double.parseDouble(path.get(i)[6])*100/d0, Double.parseDouble(pathBench.get(i)[5])*100/b0));
-                    cursorDate.plusDays(7);
-                //} else if (pathBench.get(i)[0].compareTo(cursorDate.toString("yyyy-MM-dd"))>0) {
+                	cursorDate=cursorDate.plusDays(7);
             	} else if (cursorDate.isBefore(current)) {
                     int j=0;
                     while (cursorDate.isBefore(new LocalDate(pathBench.get(i-j)[0])) && i-j>0 && j<3) j++;
-                    //dates.add(pathBench.get(i-j)[0]);
-                    //priceBench.add(Double.parseDouble(pathBench.get(i - j)[6]) * 100 / d0);
                     pricePath.add(new PriceItem(pathBench.get(i - j)[0], Double.parseDouble(path.get(i - j)[6])*100/d0, Double.parseDouble(pathBench.get(i - j)[5])*100/b0));
-                    cursorDate.plusDays(7);
+                    cursorDate=cursorDate.plusDays(7);
                 }
             }
-
-            /*int j=0;
-            d0=Double.parseDouble(path.get(path.size()-1)[6]);
-            for (int i=path.size()-1; i>=0; i--) {
-                if (path.get(i)[0].equals(dates.get(j))) {
-                    price.add(Double.parseDouble(path.get(i)[6]) * 100 / d0);
-                    if (j<dates.size()-1) j++;
-                    else break;
-                } else if (path.get(i)[0].compareTo(dates.get(j))>=0){
-                    price.add(Double.parseDouble(path.get(i)[6]) * 100 / d0);
-                    if (j<dates.size()-1) j++;
-                }
-            }*/
 
             double avgPerf=0.0;
             int last=pricePath.size()-1;
@@ -136,26 +114,6 @@ public class Analysis{
 	public void setPricePath(List<PriceItem> pricePath) {
 		this.pricePath = pricePath;
 	}
-
-	/*@ElementCollection
-	@CollectionTable(name = "price")
-	public List<Double> getPrice() {
-        return price;
-    }
-	
-	public void setPrice(List<Double> price) {
-		this.price = price;
-	}
-
-	@ElementCollection
-	@CollectionTable(name = "priceBench")
-	public List<Double> getPriceBench() {
-		return priceBench;
-	}
-	   
-	public void setPriceBench(List<Double> priceBench) {
-		this.priceBench = priceBench;
-	}*/
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "analysis")
     public List<Indicator> getIndicators() {
