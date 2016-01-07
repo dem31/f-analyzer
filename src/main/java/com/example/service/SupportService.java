@@ -43,6 +43,7 @@ public class SupportService{
 	        	DateTime d=new DateTime(date);
 	        	if (d.isAfter(LocalDate.now().toDateTimeAtStartOfDay()))
 		        	return "?already_updated";
+	        	System.out.println("now is "+d.toString()+" StartOfDay is "+LocalDate.now().toDateTimeAtStartOfDay().toString());
 	        	
 	        	c.setAutoCommit(false);
 	        	sql = "update last_modified set last_modified=? where id=?";
@@ -51,12 +52,14 @@ public class SupportService{
 	        	ps.setString(1, LocalDate.now().toString());
 		        ps.setString(2, id);
 	        	ps.executeUpdate();
+	        	System.out.println("updated");
 	        	
 	        	sql = "delete from asset where id_index=?";
 	        	ps.close();
 	        	ps = c.prepareStatement(sql);
 	        	ps.setString(1, id);
 	        	ps.executeUpdate();
+	        	System.out.println("deleted");
 	        	
 	        	sql = "insert into asset(id_index, symbol, name) values(?,?,?)";
 	        	ps.close();
@@ -67,6 +70,7 @@ public class SupportService{
 	        	Document doc=null;
 	        	Element table = null;
 	        	Elements rows = null;
+	        	System.out.println("try table");
 				try {
 					url = new URL(link);
 					doc = Jsoup.parse(url, 3000);
@@ -77,6 +81,7 @@ public class SupportService{
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				System.out.println("loaded table");
 	        	Map<String, String> assets = new HashMap<String, String>();
 	        	for (int i = 1; i < rows.size(); i++) {
 	        	    Element row = rows.get(i);
@@ -89,6 +94,7 @@ public class SupportService{
 	                ps.setString(3, entry.getValue());
 	                ps.executeUpdate();
 	        	}
+	        	System.out.println("inserted");
 	        	c.commit();	
 	        } else return "?not_found";
     	} catch (SQLException e ) {
