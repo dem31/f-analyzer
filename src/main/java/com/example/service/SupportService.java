@@ -4,6 +4,8 @@ import org.hibernate.ejb.HibernateEntityManager;
 import org.hibernate.engine.SessionImplementor;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -40,10 +42,11 @@ public class SupportService{
 	        if (rs.next()){
 	        	String date = rs.getString("last_modified");
 	        	String id = rs.getString("id");
-	        	DateTime d=new DateTime(date);
-	        	if (d.isAfter(LocalDate.now().toDateTimeAtStartOfDay()))
+	        	DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
+	        	DateTime  d = DateTime.parse(date, formatter);
+	        	if (d.isAfter(DateTime.now().withTimeAtStartOfDay()))
 		        	return "?already_updated";
-	        	System.out.println("now is "+d.toString()+" StartOfDay is "+LocalDate.now().toDateTimeAtStartOfDay().toString());
+	        	System.out.println("now is "+d.toString()+" StartOfDay is "+DateTime.now().withTimeAtStartOfDay().toString());
 	        	
 	        	c.setAutoCommit(false);
 	        	sql = "update last_modified set last_modified=? where id=?";
