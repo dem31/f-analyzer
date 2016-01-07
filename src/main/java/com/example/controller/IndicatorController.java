@@ -1,11 +1,13 @@
 package com.example.controller;
-
+import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.example.model.Analysis;
 import com.example.service.AnalysisService;
+import com.example.service.SupportService;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Calendar;
@@ -16,6 +18,8 @@ public class IndicatorController {
 	
 	@Autowired
     private AnalysisService analysisService;
+	@Autowired
+    private SupportService supportService;
 
 	@RequestMapping
     public String provideLink(Map<String, Object> map) {
@@ -28,14 +32,18 @@ public class IndicatorController {
     public String addAnalysis(HttpServletRequest request) {
     	String asset=request.getParameter("asset");
     	String bench=request.getParameter("bench");
+    	String date=request.getParameter("date");
+        LocalDate point=new LocalDate(date);
+        LocalDate lastPossibleDate=new LocalDate().minusDays(370);
+        if (point.isAfter(lastPossibleDate)) point=lastPossibleDate;
         
     	String link="http://real-chart.finance.yahoo.com/table.csv?g=d&ignore=.csv&";
-    	String date="2012-01-15";
-        String[] parts=date.split("-");
+    	/*date="2012-01-15";
+        String[] parts=date.split("-");*/
         String year = String.format("%02d", Calendar.getInstance().get(Calendar.YEAR));
         String month = String.format("%02d", Calendar.getInstance().get(Calendar.MONTH)-1);
         String day = String.format("%02d", Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-        link+="e="+day+"&d="+month+"&f="+year+"&b="+parts[2]+"&a="+parts[1]+"&c="+parts[0]+"&s=";
+        link+="e="+day+"&d="+month+"&f="+year+"&b="+point.getDayOfMonth()+"&a="+(point.getMonthOfYear()-1)+"&c="+point.getYear()+"&s=";
     	
         Analysis a=analysisService.findAnalysis(asset, bench, date+year+month+day);
         if (a==null){
@@ -53,6 +61,15 @@ public class IndicatorController {
         map.put("analysis", a);
     	
         return "show";
+    }
+    
+    @Transactional
+    @RequestMapping(value = "refresh", method = RequestMethod.GET)
+    public String refreshIndex(HttpServletRequest request) {
+    	String index=request.getParameter("index");
+    	String response="";
+    	if (!index.isEmpty()) response=supportService.updateComponents(index);
+        return "redirect:/indicator"+response;
     }
 
 }
