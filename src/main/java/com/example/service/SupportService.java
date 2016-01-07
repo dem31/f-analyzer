@@ -28,7 +28,7 @@ public class SupportService{
     EntityManager em;
         
     public String updateComponents(String index) {
-    	String sql = "select  from index where index_id=?";
+    	String sql = "select * from index where index_id=?";
     	HibernateEntityManager hem = (HibernateEntityManager) em;
     	SessionImplementor sim = (SessionImplementor) hem.getSession();
     	Connection c = sim.connection(); 	
