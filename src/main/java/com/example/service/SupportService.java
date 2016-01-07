@@ -101,9 +101,9 @@ public class SupportService{
 	        	c.commit();	
 	        } else return "?not_found";
     	} catch (SQLException e ) {
-    		System.err.print("SQL exception");
     		try { c.rollback();}
         	catch(SQLException ex) { System.err.print("SQL exception"); }
+    		return "?"+e.toString();
         } finally {
         	try { if (ps != null) ps.close(); }
         	catch(SQLException ex) { System.err.print("SQL exception"); }
