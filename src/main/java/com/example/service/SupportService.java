@@ -42,7 +42,7 @@ public class SupportService{
 	        if (rs.next()){
 	        	String date = rs.getString("last_modified");
 	        	String id = rs.getString("id");
-	        	DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
+	        	DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss.S");
 	        	DateTime  d = DateTime.parse(date, formatter);
 	        	if (d.isAfter(DateTime.now().withTimeAtStartOfDay()))
 		        	return "?already_updated";
