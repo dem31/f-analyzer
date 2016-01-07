@@ -49,7 +49,7 @@ public class SupportService{
 	        	System.out.println("now is "+d.toString()+" StartOfDay is "+DateTime.now().withTimeAtStartOfDay().toString());
 	        	
 	        	c.setAutoCommit(false);
-	        	sql = "update last_modified set last_modified=? where id=?";
+	        	sql = "update index set last_modified=? where id=?";
 	        	ps.close();
 	        	ps = c.prepareStatement(sql);
 	        	ps.setString(1, LocalDate.now().toString());
