@@ -14,8 +14,15 @@
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <link href="//netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
 
-  <style type="text/css">
-  </style>
+  <script type="text/javascript">
+    var indexes = [
+                  <c:forEach var="index" items="${indexes}" varStatus="status">
+                    [ <c:out value="${index.key}"/>, <c:out value='"${index.value}"' escapeXml="false"/>]
+                    <c:if test="${not status.last}">,</c:if>
+                  </c:forEach>
+    ];
+    ];
+   </script>
 </head>
 <body>
 <div class="container">

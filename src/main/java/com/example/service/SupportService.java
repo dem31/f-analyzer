@@ -19,6 +19,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
@@ -80,9 +81,9 @@ public class SupportService{
 					table = doc.select("table").get(8);
 		        	rows = table.select("tr");
 				} catch (MalformedURLException e) {
-					return "?"+e.toString();
+					return "?fail";
 				} catch (IOException e) {
-					return "?"+e.toString();
+					return "?fail";
 				}
 				System.out.println("loaded table");
 	        	Map<String, String> assets = new HashMap<String, String>();
@@ -103,13 +104,55 @@ public class SupportService{
     	} catch (SQLException e ) {
     		try { c.rollback();}
         	catch(SQLException ex) { System.err.print("SQL exception"); }
-    		return "?"+e.toString();
+    		return "?fail";
         } finally {
         	try { if (ps != null) ps.close(); }
         	catch(SQLException ex) { System.err.print("SQL exception"); }
         }
         return "?ok";
     }
-
     
+    public Map<Integer, String> getIndexes() {
+    	Map<Integer, String> m=new HashMap<Integer, String>();
+    	String sql = "select * from index";
+    	HibernateEntityManager hem = (HibernateEntityManager) em;
+    	SessionImplementor sim = (SessionImplementor) hem.getSession();
+    	Connection c = sim.connection(); 
+    	Statement st=null;
+    	ResultSet rs=null;
+		try {
+			st = c.createStatement();
+			rs = st.executeQuery(sql);
+	        while(rs.next())
+	        	m.put(rs.getInt("id"), rs.getString("index_id")+" "+rs.getString("index_name"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+        	try { if (rs != null) rs.close(); }
+        	catch(SQLException ex) { System.err.print("SQL exception"); }
+        }
+    	return m;
+    }
+    
+    public Map<String, String> getAssets(int id) {
+    	Map<String, String> m=new HashMap<String, String>();
+    	String sql = "select * from asset where id_index="+id;
+    	HibernateEntityManager hem = (HibernateEntityManager) em;
+    	SessionImplementor sim = (SessionImplementor) hem.getSession();
+    	Connection c = sim.connection(); 
+    	Statement st=null;
+    	ResultSet rs=null;
+		try {
+			st = c.createStatement();
+			rs = st.executeQuery(sql);
+	        while(rs.next())
+	        	m.put(rs.getString("symbol"), rs.getString("name"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+        	try { if (rs != null) rs.close(); }
+        	catch(SQLException ex) { System.err.print("SQL exception"); }
+        }
+    	return m;
+    }
 }
