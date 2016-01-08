@@ -80,16 +80,20 @@ public class SupportService{
 					table = doc.select("table").get(9);
 		        	rows = table.select("tr");
 				} catch (MalformedURLException e) {
-					e.printStackTrace();
+					return "?"+e.toString();
 				} catch (IOException e) {
-					e.printStackTrace();
+					return "?"+e.toString();
 				}
 				System.out.println("loaded table");
 	        	Map<String, String> assets = new HashMap<String, String>();
 	        	for (int i = 1; i < rows.size(); i++) {
-	        	    Element row = rows.get(i);
-	        	    Elements td=row.select("td");
-	        	    assets.put(td.get(0).text(), td.get(1).text());
+	        		Element row = rows.get(i);
+	        		String t=row.select("td").get(0).text();
+		        	try {
+	        	    assets.put(row.select("td").get(0).text(), row.select("td").get(1).text());
+		        	} catch (Exception e) {
+		        		return "?rowssize="+rows.size()+" td0="+t+" and "+e.toString();
+				}
 	        	}
 	        	for (Map.Entry<String, String> entry : assets.entrySet())
 	        	{
@@ -104,7 +108,7 @@ public class SupportService{
     	} catch (SQLException e ) {
     		try { c.rollback();}
         	catch(SQLException ex) { System.err.print("SQL exception"); }
-    		e.printStackTrace();
+    		return "?"+e.toString();
         } finally {
         	try { if (ps != null) ps.close(); }
         	catch(SQLException ex) { System.err.print("SQL exception"); }
