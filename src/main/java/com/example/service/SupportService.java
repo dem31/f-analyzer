@@ -3,7 +3,6 @@ package com.example.service;
 import org.hibernate.ejb.HibernateEntityManager;
 import org.hibernate.engine.SessionImplementor;
 import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.jsoup.Jsoup;
@@ -20,6 +19,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,7 +52,7 @@ public class SupportService{
 	        	sql = "update index set last_modified=? where id=?";
 	        	ps.close();
 	        	ps = c.prepareStatement(sql);
-	        	ps.setString(1, LocalDate.now().toString());
+	        	ps.setTimestamp(1, new Timestamp(DateTime.now().getMillis()));
 		        ps.setInt(2, id);
 	        	ps.executeUpdate();
 	        	System.out.println("updated");
