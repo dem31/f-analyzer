@@ -114,7 +114,7 @@ public class SupportService{
         return "?ok";
     }
     
-    @Transactional
+    @Transactional(readOnly = true)
     public Map<Integer, String> getIndexes() {
     	Map<Integer, String> m=new HashMap<Integer, String>();
     	String sql = "select * from index";
@@ -137,7 +137,7 @@ public class SupportService{
     	return m;
     }
     
-    @Transactional
+    @Transactional(readOnly = true)
     public Map<String, String> getAssets(int id) {
     	Map<String, String> m=new HashMap<String, String>();
     	String sql = "select * from asset where id_index="+id;

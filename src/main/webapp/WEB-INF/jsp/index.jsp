@@ -15,13 +15,10 @@
   <link href="//netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
 
   <script type="text/javascript">
-    var indexes = [
                   <c:forEach var="index" items="${indexes}" varStatus="status">
                     [ <c:out value="${index.key}"/>, <c:out value='"${index.value}"' escapeXml="false"/>]
                     <c:if test="${not status.last}">,</c:if>
                   </c:forEach>
-    ];
-    ];
    </script>
 </head>
 <body>
@@ -33,10 +30,15 @@
             </div>
             <form method="post" action="indicator/add" class="form-vertical">
             <div class="form-group">
-              <label for="assetID">Asset</label>
-              <div class="col-xs-4">
-              	<input type="text" class="form-control" id="assetID" name="asset" placeholder="Asset ID">
-              </div>
+            	<label for="assetID">Asset</label>
+            	<div class="col-xs-4">
+				    <input type="text" id="assetID" name="asset"  />
+				    <select id="assetIDSelect">
+				    	<c:forEach var="index" items="${indexes}">
+						<option value=<c:out value='"${index.value}"' escapeXml="false"/>><c:out value="${index.key}"/></option>
+                  		</c:forEach>
+				    </select>
+			    </div>
             </div>
             <div class="form-group">
               <label for="benchmarkID">Benchmark</label>
