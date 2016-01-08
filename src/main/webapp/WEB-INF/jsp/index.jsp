@@ -15,16 +15,18 @@
   <link href="//netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
 
   <script type="text/javascript">
-  $('#benchmarkIDSelect').change(function () {
-	    var selected = $(this).find("option:selected").val();
-	    $("#benchmarkID").val(selected);
-	    $.ajax({
-	        url:"index_assets/"+selected,  
-	        success:function(data) {
-	           alert(data); 
-	        }
-	     });
-	});
+  $(document).ready(function(){
+	  $('#benchmarkIDSelect').change(function () {
+		    var selected = $(this).find("option:selected").val();
+		    $("#benchmarkID").val(selected);
+		    $.ajax({
+		        url:"index_assets/"+selected,  
+		        success:function(data) {
+		           alert(data); 
+		        }
+		     });
+		});
+  }):
   </script>
 </head>
 <body>
