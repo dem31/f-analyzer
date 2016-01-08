@@ -77,7 +77,7 @@ public class SupportService{
 				try {
 					url = new URL(link);
 					doc = Jsoup.parse(url, 3000);
-					table = doc.select("table").get(9);
+					table = doc.select("table").get(8);
 		        	rows = table.select("tr");
 				} catch (MalformedURLException e) {
 					return "?"+e.toString();
