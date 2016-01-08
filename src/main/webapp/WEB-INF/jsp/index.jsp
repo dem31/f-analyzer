@@ -15,11 +15,17 @@
   <link href="//netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
 
   <script type="text/javascript">
-                  <c:forEach var="index" items="${indexes}" varStatus="status">
-                    [ <c:out value="${index.key}"/>, <c:out value='"${index.value}"' escapeXml="false"/>]
-                    <c:if test="${not status.last}">,</c:if>
-                  </c:forEach>
-   </script>
+  $('#benchmarkIDSelect').change(function () {
+	    var selected = $(this).find("option:selected").val();
+	    $("#benchmarkID").val(selected);
+	    $.ajax({
+	        url:"index_assets/"+selected,  
+	        success:function(data) {
+	           alert(data); 
+	        }
+	     });
+	});
+  </script>
 </head>
 <body>
 <div class="container">
@@ -30,21 +36,25 @@
             </div>
             <form method="post" action="indicator/add" class="form-vertical">
             <div class="form-group">
-            	<label for="assetID">Asset</label>
+            	<label for="benchmarkIDSelect">Asset</label>
             	<div class="col-xs-4">
-				    <input type="text" id="assetID" name="asset"  />
-				    <select id="assetIDSelect">
+				    <input type="hidden" id="benchmarkID" name="bench"  />
+				    <select id="benchmarkIDSelect">
+				    	<option value="">-</option>
 				    	<c:forEach var="index" items="${indexes}">
-						<option value=<c:out value='"${index.value}"' escapeXml="false"/>><c:out value="${index.key}"/></option>
+						<option value=<c:out value='"${index.key}"' escapeXml="false"/>><c:out value="${index.value}"/></option>
                   		</c:forEach>
 				    </select>
 			    </div>
             </div>
             <div class="form-group">
-              <label for="benchmarkID">Benchmark</label>
-              <div class="col-xs-4">
-              	<input type="text" class="form-control" id="benchmarkID" name="bench" placeholder="Benchmark ID">
-              </div>
+            	<label for="assetIDSelect">Benchmark</label>
+            	<div class="col-xs-4">
+              		<input type="hidden" id="assetID" name="asset"  />
+					<select id="assetIDSelect">
+						<option value="">-</option>
+					</select>
+              	</div>
             </div>
             <div class="form-group">
             	<label for="date">Start Date</label>
