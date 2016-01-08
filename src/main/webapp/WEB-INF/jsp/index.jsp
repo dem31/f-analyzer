@@ -23,7 +23,8 @@
 		        url:"index_assets/"+selected,  
 		        success:function(data) {
 		           $.each(data, function(key, value) {
-		               $('#assetIDSelect').append($('<option>').text(value).attr('value', value));
+		        	   $('#assetIDSelect').removeClass("removable");
+		               $('#assetIDSelect').append($('<option>').text(value).attr({'value': value, 'class': "removable"}));
 		           });
 		        }
 		     });
