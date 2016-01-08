@@ -80,9 +80,9 @@ public class SupportService{
 					table = doc.select("table").get(9);
 		        	rows = table.select("tr");
 				} catch (MalformedURLException e) {
-					e.printStackTrace();
+					return "?"+e.toString();
 				} catch (IOException e) {
-					e.printStackTrace();
+					return "?"+e.toString();
 				}
 				System.out.println("loaded table");
 	        	Map<String, String> assets = new HashMap<String, String>();
