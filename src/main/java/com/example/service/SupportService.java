@@ -10,6 +10,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.io.IOException;
@@ -112,6 +114,7 @@ public class SupportService{
         return "?ok";
     }
     
+    @Transactional
     public Map<Integer, String> getIndexes() {
     	Map<Integer, String> m=new HashMap<Integer, String>();
     	String sql = "select * from index";
@@ -134,6 +137,7 @@ public class SupportService{
     	return m;
     }
     
+    @Transactional
     public Map<String, String> getAssets(int id) {
     	Map<String, String> m=new HashMap<String, String>();
     	String sql = "select * from asset where id_index="+id;
