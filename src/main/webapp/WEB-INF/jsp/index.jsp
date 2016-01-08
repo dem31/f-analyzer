@@ -22,8 +22,7 @@
 		    $.ajax({
 		        url:"index_assets/"+selected,  
 		        success:function(data) {
-		           alert(data); 
-		           $.each(json, function(key, value) {
+		           $.each(data, function(key, value) {
 		               $('#assetIDSelect').append($('<option>').text(value).attr('value', value));
 		           });
 		        }
