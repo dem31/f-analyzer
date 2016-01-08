@@ -41,7 +41,7 @@ public class SupportService{
 	        ResultSet rs=ps.executeQuery();
 	        if (rs.next()){
 	        	String date = rs.getString("last_modified");
-	        	String id = rs.getString("id");
+	        	int id = rs.getInt("id");
 	        	DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss.SSSSSS");
 	        	DateTime  d = DateTime.parse(date, formatter);
 	        	if (d.isAfter(DateTime.now().withTimeAtStartOfDay()))
@@ -53,14 +53,14 @@ public class SupportService{
 	        	ps.close();
 	        	ps = c.prepareStatement(sql);
 	        	ps.setString(1, LocalDate.now().toString());
-		        ps.setString(2, id);
+		        ps.setInt(2, id);
 	        	ps.executeUpdate();
 	        	System.out.println("updated");
 	        	
 	        	sql = "delete from asset where id_index=?";
 	        	ps.close();
 	        	ps = c.prepareStatement(sql);
-	        	ps.setString(1, id);
+	        	ps.setInt(1, id);
 	        	ps.executeUpdate();
 	        	System.out.println("deleted");
 	        	
@@ -92,7 +92,7 @@ public class SupportService{
 	        	}
 	        	for (Map.Entry<String, String> entry : assets.entrySet())
 	        	{
-	        		ps.setString(1, id);
+	        		ps.setInt(1, id);
 	        		ps.setString(2, entry.getKey());
 	                ps.setString(3, entry.getValue());
 	                ps.executeUpdate();
