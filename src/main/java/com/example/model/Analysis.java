@@ -53,13 +53,6 @@ public class Analysis{
             List<String[]> pathBench = reader.readAll();
             reader.close();
             pathBench.remove(0);
-
-            stockURL = new URL(link+"BNP.PA");
-            //in = new BufferedReader(new InputStreamReader(stockURL.openStream()));
-            reader = new CSVReader(new InputStreamReader(getCSV(stockURL)));
-            List<String[]> pathh= reader.readAll();
-            reader.close();
-            pathh.remove(0);
             
             stockURL = new URL(link+asset);
             //in = new BufferedReader(new InputStreamReader(stockURL.openStream()));
@@ -69,10 +62,10 @@ public class Analysis{
             path.remove(0);
 
             int size=pathBench.size();
-            if (path.size()<size)
+            /*if (path.size()<size)
             	for (int i=0; i<path.size(); i++)
             		for (int j=0; j<path.get(i).length; j++)
-            		System.err.println(i+" "+j+" STRING ="+path.get(i)[j]);
+            		System.err.println(i+" "+j+" STRING ="+path.get(i)[j]);*/
             double d0=Double.parseDouble(path.get(size-1)[6]);
             double b0=Double.parseDouble(pathBench.get(size-1)[6]);
             LocalDate cursorDate = new LocalDate(pathBench.get(size-1)[0]);
@@ -120,21 +113,7 @@ public class Analysis{
     	    is = connection.getInputStream();
     	} catch (IOException ioe) {
 
-    		try {
-    		    // Construct data
-    		    String data = URLEncoder.encode("u", "UTF-8")+"="+URLEncoder.encode(link.getPath(), "UTF-8");
-    		    // Send data
-    		    URL url = new URL("https://hide.me/en/proxy");
-    		    URLConnection conn = url.openConnection();
-    		    conn.setDoOutput(true);
-    		    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-    		    wr.write(data);
-    		    wr.flush();
-    		    is=conn.getInputStream();
-    		    wr.close();
-    		} catch (Exception ignored) {
-    		}
-    		
+    		is = connection.getInputStream();
     	}
     	return is;
     }
