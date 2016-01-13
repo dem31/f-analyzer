@@ -160,10 +160,9 @@ public class SupportService{
     	return m;
     }
     
-    @Transactional(readOnly = true)
+    @Transactional
     public Map<String, String> getAssets(String id) {
     	Map<String, String> m=new HashMap<String, String>();
-    	m.put("id", id);
     	String sql = "select asset.symbol, asset.name from asset join index on asset.id_index=index.id where index.index_id=?";
     	HibernateEntityManager hem = (HibernateEntityManager) em;
     	SessionImplementor sim = (SessionImplementor) hem.getSession();
@@ -178,6 +177,7 @@ public class SupportService{
 	        	m.put(rs.getString("symbol"), rs.getString("name"));
 		} catch (SQLException e) {
 			e.printStackTrace();
+			m.put("err", e.toString());
 		} finally {
         	try { if (rs != null) rs.close(); }
         	catch(SQLException ex) { System.err.print("SQL exception"); }
