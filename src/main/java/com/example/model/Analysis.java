@@ -62,7 +62,8 @@ public class Analysis{
             int size=pathBench.size();
             if (path.size()<size)
             	for (int i=0; i<path.size(); i++)
-            		System.err.println(i+" STRING OOOOOMG = "+path.get(i));
+            		for (int j=0; j<path.get(i).length; j++)
+            		System.err.println(i+" "+j+" STRING ="+path.get(i)[j]);
             double d0=Double.parseDouble(path.get(size-1)[6]);
             double b0=Double.parseDouble(pathBench.get(size-1)[6]);
             LocalDate cursorDate = new LocalDate(pathBench.get(size-1)[0]);
