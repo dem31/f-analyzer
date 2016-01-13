@@ -3,8 +3,11 @@ package com.example.model;
 import com.opencsv.CSVReader;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -43,15 +46,15 @@ public class Analysis{
         URL stockURL = null;
         try {
             stockURL = new URL(link+bench);
-            BufferedReader in = new BufferedReader(new InputStreamReader(stockURL.openStream()));
-            CSVReader reader = new CSVReader(in);
+            //BufferedReader in = new BufferedReader(new InputStreamReader(stockURL.openStream()));
+            CSVReader reader = new CSVReader(new InputStreamReader(getCSV(stockURL)));
             List<String[]> pathBench = reader.readAll();
             reader.close();
             pathBench.remove(0);
 
             stockURL = new URL(link+asset);
-            in = new BufferedReader(new InputStreamReader(stockURL.openStream()));
-            reader = new CSVReader(in);
+            //in = new BufferedReader(new InputStreamReader(stockURL.openStream()));
+            reader = new CSVReader(new InputStreamReader(getCSV(stockURL)));
             List<String[]> path= reader.readAll();
             reader.close();
             path.remove(0);
@@ -95,6 +98,23 @@ public class Analysis{
         } catch (Exception ee){
             ee.printStackTrace();
         }
+    }
+    
+    private InputStream getCSV(URL url) throws IOException{
+    	URLConnection connection = url.openConnection();
+    	InputStream is = null;
+    	try {
+    	    is = connection.getInputStream();
+    	} catch (IOException ioe) {
+    	    if (connection instanceof HttpURLConnection) {
+    	        HttpURLConnection httpConn = (HttpURLConnection) connection;
+    	        int statusCode = httpConn.getResponseCode();
+    	        if (statusCode != 200) {
+    	            is = httpConn.getErrorStream();
+    	        }
+    	    }
+    	}
+    	return is;
     }
 	
     @Id
