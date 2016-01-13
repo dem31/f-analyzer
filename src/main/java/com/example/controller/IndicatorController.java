@@ -39,7 +39,7 @@ public class IndicatorController {
         
     	String link="http://real-chart.finance.yahoo.com/table.csv?g=d&ignore=.csv&";
         String year = String.format("%02d", Calendar.getInstance().get(Calendar.YEAR));
-        String month = String.format("%02d", Calendar.getInstance().get(Calendar.MONTH)-1);
+        String month = String.format("%02d", Calendar.getInstance().get(Calendar.MONTH));
         String day = String.format("%02d", Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
         link+="e="+day+"&d="+month+"&f="+year+"&b="+point.getDayOfMonth()+"&a="+(point.getMonthOfYear()-1)+"&c="+point.getYear()+"&s=";
     	
