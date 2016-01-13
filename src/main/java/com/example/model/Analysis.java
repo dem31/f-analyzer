@@ -60,6 +60,7 @@ public class Analysis{
             path.remove(0);
 
             int size=pathBench.size();
+            System.out.println(path.size()+" THIS IS SIZE ASSET WTF, NOT "+size);
             double d0=Double.parseDouble(path.get(size-1)[6]);
             double b0=Double.parseDouble(pathBench.get(size-1)[6]);
             LocalDate cursorDate = new LocalDate(pathBench.get(size-1)[0]);
@@ -106,6 +107,7 @@ public class Analysis{
     	try {
     	    is = connection.getInputStream();
     	} catch (IOException ioe) {
+    		ioe.printStackTrace();
     	    if (connection instanceof HttpURLConnection) {
     	        HttpURLConnection httpConn = (HttpURLConnection) connection;
     	        int statusCode = httpConn.getResponseCode();
