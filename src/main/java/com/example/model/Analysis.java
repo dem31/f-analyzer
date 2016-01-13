@@ -92,6 +92,8 @@ public class Analysis{
 
         } catch (IOException e){
             e.printStackTrace();
+        } catch (Exception ee){
+            ee.printStackTrace();
         }
     }
 	

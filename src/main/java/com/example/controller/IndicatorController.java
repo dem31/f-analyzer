@@ -38,8 +38,6 @@ public class IndicatorController {
         if (point.isAfter(lastPossibleDate)) point=lastPossibleDate;
         
     	String link="http://real-chart.finance.yahoo.com/table.csv?g=d&ignore=.csv&";
-    	/*date="2012-01-15";
-        String[] parts=date.split("-");*/
         String year = String.format("%02d", Calendar.getInstance().get(Calendar.YEAR));
         String month = String.format("%02d", Calendar.getInstance().get(Calendar.MONTH)-1);
         String day = String.format("%02d", Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
