@@ -163,6 +163,7 @@ public class SupportService{
     @Transactional(readOnly = true)
     public Map<String, String> getAssets(String id) {
     	Map<String, String> m=new HashMap<String, String>();
+    	m.put("id", id);
     	String sql = "select asset.symbol, asset.name from asset join index on asset.id_index=index.id where index.index_id=?";
     	HibernateEntityManager hem = (HibernateEntityManager) em;
     	SessionImplementor sim = (SessionImplementor) hem.getSession();
