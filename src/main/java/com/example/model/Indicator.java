@@ -17,6 +17,7 @@ public class Indicator {
 
     private Integer indicatorId;
 	private Analysis analysis;
+	private int period;
 	private double beta;
     private double perf;
     private double vol;
@@ -25,6 +26,7 @@ public class Indicator {
 	public Indicator(){}
 	
 	public Indicator(Analysis a, List<PriceItem> pricePath, int period){
+		this.period=period;
     	this.analysis=a;
     	int last=pricePath.size()-1;
 
@@ -106,6 +108,14 @@ public class Indicator {
 	
 	public void setVol(double vol) {
 		this.vol = vol;
+	}
+	
+	public int getPeriod() {
+        return period;
+    }
+	
+	public void setPeriod(int period) {
+		this.period = period;
 	}
    
 }

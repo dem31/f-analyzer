@@ -16,6 +16,7 @@
 
   <script type="text/javascript">
   $(document).ready(function(){
+	  
 	  $('#benchmarkIDSelect').change(function () {
 		    var selected = $(this).find("option:selected").val();
 		    $("#benchmarkID").val(selected);
@@ -30,6 +31,11 @@
 		            });
 		        }
 		     });
+		});
+	  
+	  $('#assetIDSelect').change(function () {
+		    var selected = $(this).find("option:selected").val();
+		    $("#assetID").val(selected);
 		});
   });
   </script>

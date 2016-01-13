@@ -115,8 +115,8 @@ public class SupportService{
     }
     
     @Transactional(readOnly = true)
-    public Map<Integer, String> getIndexes() {
-    	Map<Integer, String> m=new HashMap<Integer, String>();
+    public Map<String, String> getIndexes() {
+    	Map<String, String> m=new HashMap<String, String>();
     	String sql = "select * from index";
     	HibernateEntityManager hem = (HibernateEntityManager) em;
     	SessionImplementor sim = (SessionImplementor) hem.getSession();
@@ -127,7 +127,7 @@ public class SupportService{
 			st = c.createStatement();
 			rs = st.executeQuery(sql);
 	        while(rs.next())
-	        	m.put(rs.getInt("id"), rs.getString("index_id")+" "+rs.getString("index_name"));
+	        	m.put(rs.getString("index_id"), rs.getString("index_name")+" ("+rs.getString("index_id")+")");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -148,6 +148,30 @@ public class SupportService{
     	ResultSet rs=null;
 		try {
 			st = c.createStatement();
+			rs = st.executeQuery(sql);
+	        while(rs.next())
+	        	m.put(rs.getString("symbol"), rs.getString("name"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+        	try { if (rs != null) rs.close(); }
+        	catch(SQLException ex) { System.err.print("SQL exception"); }
+        }
+    	return m;
+    }
+    
+    @Transactional(readOnly = true)
+    public Map<String, String> getAssets(String id) {
+    	Map<String, String> m=new HashMap<String, String>();
+    	String sql = "select asset.symbol, asset.name from asset join index on asset.id_index=index.id where index.index_id=?";
+    	HibernateEntityManager hem = (HibernateEntityManager) em;
+    	SessionImplementor sim = (SessionImplementor) hem.getSession();
+    	Connection c = sim.connection(); 
+    	PreparedStatement st=null;
+    	ResultSet rs=null;
+		try {
+			st = c.prepareStatement(sql);
+			st.setString(1, id);
 			rs = st.executeQuery(sql);
 	        while(rs.next())
 	        	m.put(rs.getString("symbol"), rs.getString("name"));

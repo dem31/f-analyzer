@@ -17,7 +17,7 @@ public class IndexController {
 
 	@RequestMapping("/")
     public String provideLink(Map<String, Object> map) {
-		Map<Integer, String> m=supportService.getIndexes();
+		Map<String, String> m=supportService.getIndexes();
         map.put("indexes", m);
         return "index";
     }
