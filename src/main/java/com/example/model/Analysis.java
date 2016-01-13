@@ -114,7 +114,7 @@ public class Analysis{
     	} catch (IOException ioe) {
 
     		String str=link.toString();
-    		connection=new URL(str.replaceAll("real-", "-")).openConnection();
+    		connection=new URL(str.replaceAll("real-", "i")).openConnection();
     		is=connection.getInputStream();
     		
     	}
