@@ -116,7 +116,8 @@ public class Analysis{
     	        HttpURLConnection httpConn = (HttpURLConnection) connection;
     	        int statusCode = httpConn.getResponseCode();
     	        if (statusCode != 200) {
-    	            is = httpConn.getErrorStream();
+    	            //is = httpConn.getErrorStream();
+    	        	is = connection.getInputStream();
     	        }
     	    }
     	}
