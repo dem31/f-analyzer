@@ -24,7 +24,7 @@ public class IndexController {
 	
 	@RequestMapping(value = "/index_assets/{id}", method = RequestMethod.GET, produces={ "application/json"})
     public @ResponseBody
-    Map<String, String> getAssets(@PathVariable Integer id) {
+    Map<String, String> getAssets(@PathVariable String id) {
 		
 		Map<String, String> m=supportService.getAssets(id);
         return m;
