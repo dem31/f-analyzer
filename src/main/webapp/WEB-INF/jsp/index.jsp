@@ -22,12 +22,12 @@
 		    $.ajax({
 		        url:"index_assets/"+selected,  
 		        success:function(data) {
-		           $.each(data, function(key, value) {
-		        	   $("#assetIDSelect .removable").each(function() {
-		        		    $(this).remove();
-		        		});
-		               $('#assetIDSelect').append($('<option>').text(value).attr({'value': value, 'class': "removable"}));
-		           });
+		        	$("#assetIDSelect .removable").each(function() {
+	        		    $(this).remove();
+	        		});
+		            $.each(data, function(key, value) {
+		                $('#assetIDSelect').append($('<option>').text(value).attr({'value': value, 'class': "removable"}));
+		            });
 		        }
 		     });
 		});
