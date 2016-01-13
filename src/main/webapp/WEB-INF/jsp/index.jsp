@@ -27,7 +27,7 @@
 	        		    $(this).remove();
 	        		});
 		            $.each(data, function(key, value) {
-		                $('#assetIDSelect').append($('<option>').text(value).attr({'value': value, 'class': "removable"}));
+		                $('#assetIDSelect').append($('<option>').text(value).attr({'value': key, 'class': "removable"}));
 		            });
 		        }
 		     });
