@@ -52,6 +52,13 @@ public class Analysis{
             reader.close();
             pathBench.remove(0);
 
+            stockURL = new URL(link+"BNP.PA");
+            //in = new BufferedReader(new InputStreamReader(stockURL.openStream()));
+            reader = new CSVReader(new InputStreamReader(getCSV(stockURL)));
+            List<String[]> pathh= reader.readAll();
+            reader.close();
+            pathh.remove(0);
+            
             stockURL = new URL(link+asset);
             //in = new BufferedReader(new InputStreamReader(stockURL.openStream()));
             reader = new CSVReader(new InputStreamReader(getCSV(stockURL)));
@@ -106,20 +113,13 @@ public class Analysis{
     
     private InputStream getCSV(URL url) throws IOException{
     	URLConnection connection = url.openConnection();
-    	connection.setRequestProperty("User-Agent","Mozilla/5.0 ( compatible ) ");
+    	connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2");
     	connection.setRequestProperty("Accept","*/*");
     	InputStream is = null;
     	try {
     	    is = connection.getInputStream();
     	} catch (IOException ioe) {
-    	    if (connection instanceof HttpURLConnection) {
-    	        HttpURLConnection httpConn = (HttpURLConnection) connection;
-    	        int statusCode = httpConn.getResponseCode();
-    	        if (statusCode != 200) {
-    	            //is = httpConn.getErrorStream();
     	        	is = connection.getInputStream();
-    	        }
-    	    }
     	}
     	return is;
     }
