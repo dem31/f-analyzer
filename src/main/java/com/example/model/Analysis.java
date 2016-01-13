@@ -5,9 +5,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -111,15 +113,28 @@ public class Analysis{
         }
     }
     
-    private InputStream getCSV(URL url) throws IOException{
-    	URLConnection connection = url.openConnection();
-    	connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2");
-    	connection.setRequestProperty("Accept","*/*");
+    private InputStream getCSV(URL link) throws IOException{
+    	URLConnection connection = link.openConnection();
     	InputStream is = null;
     	try {
     	    is = connection.getInputStream();
     	} catch (IOException ioe) {
-    	        	is = connection.getInputStream();
+
+    		try {
+    		    // Construct data
+    		    String data = URLEncoder.encode("u", "UTF-8")+"="+URLEncoder.encode(link.getPath(), "UTF-8");
+    		    // Send data
+    		    URL url = new URL("https://hide.me/en/proxy");
+    		    URLConnection conn = url.openConnection();
+    		    conn.setDoOutput(true);
+    		    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+    		    wr.write(data);
+    		    wr.flush();
+    		    is=conn.getInputStream();
+    		    wr.close();
+    		} catch (Exception ignored) {
+    		}
+    		
     	}
     	return is;
     }
