@@ -3,9 +3,7 @@ import com.opencsv.CSVReader;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -98,17 +96,16 @@ public class Analysis{
         }
     }
     
-    private InputStream getCSV(URL link) throws IOException{
+    /*private InputStream getCSV(URL link) throws IOException{
     	HttpURLConnection connection = (HttpURLConnection ) link.openConnection();
     	connection.setRequestProperty("User-Agent", "Web-sniffer/1.1.0 (+http://web-sniffer.net/)");
     	connection.setRequestProperty("Accept-Encoding","gzip");
     	connection.setRequestProperty("Accept-Charset","ISO-8859-1,UTF-8;q=0.7,*;q=0.7");
     	connection.setRequestProperty("Cache-Control","no-cache");
     	connection.setRequestProperty("Accept-Language","de,en;q=0.7,en-us;q=0.3");
-    	
     	InputStream is = connection.getInputStream();
     	return is;
-    }
+    }*/
 	
     @Id
 	@GeneratedValue(strategy = IDENTITY)
