@@ -37,7 +37,7 @@ public class IndicatorController {
         LocalDate lastPossibleDate=new LocalDate().minusDays(370);
         if (point.isAfter(lastPossibleDate)) point=lastPossibleDate;
         
-    	String link="http://real-chart.finance.yahoo.com/table.csv?g=d&ignore=.csv&";
+    	String link="http://ichart.finance.yahoo.com/table.csv?g=d&ignore=.csv&";
         String year = String.format("%02d", Calendar.getInstance().get(Calendar.YEAR));
         String month = String.format("%02d", Calendar.getInstance().get(Calendar.MONTH));
         String day = String.format("%02d", Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
