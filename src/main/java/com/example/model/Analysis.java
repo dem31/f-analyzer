@@ -1,5 +1,7 @@
 package com.example.model;
 import com.opencsv.CSVReader;
+
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -43,24 +45,20 @@ public class Analysis{
         URL stockURL = null;
         try {
             stockURL = new URL(link+bench);
-            //BufferedReader in = new BufferedReader(new InputStreamReader(stockURL.openStream()));
-            CSVReader reader = new CSVReader(new InputStreamReader(getCSV(stockURL)));
+            BufferedReader in = new BufferedReader(new InputStreamReader(stockURL.openStream()));
+            CSVReader reader = new CSVReader(in);
             List<String[]> pathBench = reader.readAll();
             reader.close();
             pathBench.remove(0);
             
             stockURL = new URL(link+asset);
-            //in = new BufferedReader(new InputStreamReader(stockURL.openStream()));
-            reader = new CSVReader(new InputStreamReader(getCSV(stockURL)));
+            in = new BufferedReader(new InputStreamReader(stockURL.openStream()));
+            reader = new CSVReader(in);
             List<String[]> path= reader.readAll();
             reader.close();
             path.remove(0);
 
             int size=pathBench.size();
-            /*if (path.size()<size)
-            	for (int i=0; i<path.size(); i++)
-            		for (int j=0; j<path.get(i).length; j++)
-            		System.err.println(i+" "+j+" STRING ="+path.get(i)[j]);*/
             double d0=Double.parseDouble(path.get(size-1)[6]);
             double b0=Double.parseDouble(pathBench.get(size-1)[6]);
             LocalDate cursorDate = new LocalDate(pathBench.get(size-1)[0]);
