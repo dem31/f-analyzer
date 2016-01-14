@@ -47,23 +47,20 @@ public class Analysis{
     	
         URL stockURL = null;
         try {
-        	
-        	stockURL = new URL(link+asset);
-            //in = new BufferedReader(new InputStreamReader(stockURL.openStream()));
-        	CSVReader reader = new CSVReader(new InputStreamReader(getCSV(stockURL)));
-            List<String[]> path= reader.readAll();
-            reader.close();
-            path.remove(0);
-
-        	
             stockURL = new URL(link+bench);
             //BufferedReader in = new BufferedReader(new InputStreamReader(stockURL.openStream()));
-            reader = new CSVReader(new InputStreamReader(getCSV(stockURL)));
+            CSVReader reader = new CSVReader(new InputStreamReader(getCSV(stockURL)));
             List<String[]> pathBench = reader.readAll();
             reader.close();
             pathBench.remove(0);
             
-           
+            stockURL = new URL(link+asset);
+            //in = new BufferedReader(new InputStreamReader(stockURL.openStream()));
+            reader = new CSVReader(new InputStreamReader(getCSV(stockURL)));
+            List<String[]> path= reader.readAll();
+            reader.close();
+            path.remove(0);
+
             int size=pathBench.size();
             /*if (path.size()<size)
             	for (int i=0; i<path.size(); i++)
@@ -111,8 +108,13 @@ public class Analysis{
     
     private InputStream getCSV(URL link) throws IOException{
     	HttpURLConnection connection = (HttpURLConnection ) link.openConnection();
-    	connection.setRequestProperty("User-Agent",
-    	        "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36");
+    	
+    	connection.setRequestProperty("Accept","text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
+    	connection.setRequestProperty("Accept-Encoding","gzip, deflate, sdch");
+    	connection.setRequestProperty("Accept-Language","fr-FR,fr;q=0.8,en-US;q=0.6,en;q=0.4");
+    	connection.setRequestProperty("Connection","keep-alive");
+    	connection.setRequestProperty("Upgrade-Insecure-Requests","1");
+    	connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36");
     	
     	InputStream is = connection.getInputStream();
     	return is;
