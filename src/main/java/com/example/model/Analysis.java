@@ -11,7 +11,10 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,6 +24,11 @@ import javax.persistence.ElementCollection;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Table;
 import org.joda.time.LocalDate;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import javax.persistence.OneToMany;
 import javax.persistence.CascadeType;
 
@@ -56,7 +64,16 @@ public class Analysis{
             
             stockURL = new URL(link+asset);
             //in = new BufferedReader(new InputStreamReader(stockURL.openStream()));
-            reader = new CSVReader(new InputStreamReader(getCSV(stockURL)));
+            try{
+            	reader = new CSVReader(new InputStreamReader(getCSV(stockURL)));
+            } catch (Exception ee){
+            	URL url = new URL("https://fr.finance.yahoo.com/q/hp?s="+asset);
+				Document doc = Jsoup.parse(url, 3000);
+				Element table = doc.select("table").get(14);
+				Elements rows = table.select("tr");
+				
+	        	System.err.println(rows.get(2).select("td").get(0).text()+ rows.get(2).select("td").get(1).text());
+            }
             List<String[]> path= reader.readAll();
             reader.close();
             path.remove(0);
@@ -108,13 +125,13 @@ public class Analysis{
     
     private InputStream getCSV(URL link) throws IOException{
     	HttpURLConnection connection = (HttpURLConnection ) link.openConnection();
-    	connection.setRequestMethod("GET");
-    	connection.setRequestProperty("Accept","text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
+    	/*connection.setRequestMethod("GET");
+    	connection.setRequestProperty("Accept", "");
     	connection.setRequestProperty("Accept-Encoding","gzip, deflate, sdch");
     	connection.setRequestProperty("Accept-Language","fr-FR,fr;q=0.8,en-US;q=0.6,en;q=0.4");
     	connection.setRequestProperty("Connection","keep-alive");
     	connection.setRequestProperty("Upgrade-Insecure-Requests","1");
-    	connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36");
+    	connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36");*/
     	
     	InputStream is = connection.getInputStream();
     	return is;
