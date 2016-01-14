@@ -47,20 +47,23 @@ public class Analysis{
     	
         URL stockURL = null;
         try {
-            stockURL = new URL(link+bench);
-            //BufferedReader in = new BufferedReader(new InputStreamReader(stockURL.openStream()));
-            CSVReader reader = new CSVReader(new InputStreamReader(getCSV(stockURL)));
-            List<String[]> pathBench = reader.readAll();
-            reader.close();
-            pathBench.remove(0);
-            
-            stockURL = new URL(link+asset);
+        	
+        	stockURL = new URL(link+asset);
             //in = new BufferedReader(new InputStreamReader(stockURL.openStream()));
-            reader = new CSVReader(new InputStreamReader(getCSV(stockURL)));
+        	CSVReader reader = new CSVReader(new InputStreamReader(getCSV(stockURL)));
             List<String[]> path= reader.readAll();
             reader.close();
             path.remove(0);
 
+        	
+            stockURL = new URL(link+bench);
+            //BufferedReader in = new BufferedReader(new InputStreamReader(stockURL.openStream()));
+            reader = new CSVReader(new InputStreamReader(getCSV(stockURL)));
+            List<String[]> pathBench = reader.readAll();
+            reader.close();
+            pathBench.remove(0);
+            
+           
             int size=pathBench.size();
             /*if (path.size()<size)
             	for (int i=0; i<path.size(); i++)
@@ -107,17 +110,11 @@ public class Analysis{
     }
     
     private InputStream getCSV(URL link) throws IOException{
-    	URLConnection connection = link.openConnection();
-    	InputStream is = null;
-    	try {
-    	    is = connection.getInputStream();
-    	} catch (IOException ioe) {
-
-    		String str=link.toString();
-    		connection=new URL(str.replaceAll("real-", "i")).openConnection();
-    		is=connection.getInputStream();
-    		
-    	}
+    	HttpURLConnection connection = (HttpURLConnection ) link.openConnection();
+    	connection.setRequestProperty("User-Agent",
+    	        "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36");
+    	
+    	InputStream is = connection.getInputStream();
     	return is;
     }
 	
