@@ -103,13 +103,13 @@ public class Analysis{
     
     private InputStream getCSV(URL link) throws IOException{
     	HttpURLConnection connection = (HttpURLConnection ) link.openConnection();
-    	/*connection.setRequestMethod("GET");
-    	connection.setRequestProperty("Accept", ");
-    	connection.setRequestProperty("Accept-Encoding","gzip, deflate, sdch");
-    	connection.setRequestProperty("Accept-Language","fr-FR,fr;q=0.8,en-US;q=0.6,en;q=0.4");
-    	connection.setRequestProperty("Connection","keep-alive");
-    	connection.setRequestProperty("Upgrade-Insecure-Requests","1");
-    	connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36");*/
+    	connection.setRequestMethod("GET");
+    	connection.setRequestProperty("Connection","close");
+    	connection.setRequestProperty("User-Agent", "Web-sniffer/1.1.0 (+http://web-sniffer.net/)");
+    	connection.setRequestProperty("Accept-Encoding","gzip");
+    	connection.setRequestProperty("Accept-Charset","ISO-8859-1,UTF-8;q=0.7,*;q=0.7");
+    	connection.setRequestProperty("Cache-Control","no-cache");
+    	connection.setRequestProperty("Accept-Language","de,en;q=0.7,en-us;q=0.3");
     	
     	InputStream is = connection.getInputStream();
     	return is;
