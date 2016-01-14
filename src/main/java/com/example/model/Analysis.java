@@ -1,20 +1,12 @@
 package com.example.model;
-
 import com.opencsv.CSVReader;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -24,11 +16,6 @@ import javax.persistence.ElementCollection;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Table;
 import org.joda.time.LocalDate;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
 import javax.persistence.OneToMany;
 import javax.persistence.CascadeType;
 
@@ -64,19 +51,7 @@ public class Analysis{
             
             stockURL = new URL(link+asset);
             //in = new BufferedReader(new InputStreamReader(stockURL.openStream()));
-            try{
-            	reader = new CSVReader(new InputStreamReader(getCSV(stockURL)));
-            } catch (Exception ee){
-				Document doc = Jsoup.connect("http://fr.finance.yahoo.com/q/hp?s=SAN.PA&a=00&b=02&c=2014&d=00&e=14&f=2016&g=d")
-						 .userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30")
-					      .referrer("http://www.google.com")
-					      .get();
-				System.err.println(doc.body());
-				/*Element table = doc.select("table").get(14);
-				Elements rows = table.select("tr");
-				
-	        	System.err.println(rows.get(2).select("td").get(0).text()+ rows.get(2).select("td").get(1).text());*/
-            }
+            reader = new CSVReader(new InputStreamReader(getCSV(stockURL)));
             List<String[]> path= reader.readAll();
             reader.close();
             path.remove(0);
@@ -129,7 +104,7 @@ public class Analysis{
     private InputStream getCSV(URL link) throws IOException{
     	HttpURLConnection connection = (HttpURLConnection ) link.openConnection();
     	/*connection.setRequestMethod("GET");
-    	connection.setRequestProperty("Accept", "");
+    	connection.setRequestProperty("Accept", ");
     	connection.setRequestProperty("Accept-Encoding","gzip, deflate, sdch");
     	connection.setRequestProperty("Accept-Language","fr-FR,fr;q=0.8,en-US;q=0.6,en;q=0.4");
     	connection.setRequestProperty("Connection","keep-alive");
