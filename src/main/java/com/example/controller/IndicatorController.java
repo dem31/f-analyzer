@@ -45,7 +45,7 @@ public class IndicatorController {
     	
         Analysis a=analysisService.findAnalysis(asset, bench, date+year+"-"+(month+1)+"-"+day);
         if (a==null){
-        	a=new Analysis(link, asset, bench, date+year+month+day);
+        	a=new Analysis(link, asset, bench, date+year+"-"+(month+1)+"-"+day);
         	analysisService.addAnalysis(a);
         }
     	
