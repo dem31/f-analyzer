@@ -108,7 +108,7 @@ public class Analysis{
     
     private InputStream getCSV(URL link) throws IOException{
     	HttpURLConnection connection = (HttpURLConnection ) link.openConnection();
-    	
+    	connection.setRequestMethod("GET");
     	connection.setRequestProperty("Accept","text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
     	connection.setRequestProperty("Accept-Encoding","gzip, deflate, sdch");
     	connection.setRequestProperty("Accept-Language","fr-FR,fr;q=0.8,en-US;q=0.6,en;q=0.4");
