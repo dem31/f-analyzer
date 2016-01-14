@@ -67,8 +67,8 @@ public class Analysis{
             try{
             	reader = new CSVReader(new InputStreamReader(getCSV(stockURL)));
             } catch (Exception ee){
-				Document doc = Jsoup.connect("https://fr.finance.yahoo.com/q/hp?s="+asset)
-						 .userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
+				Document doc = Jsoup.connect("http://fr.finance.yahoo.com/q/hp?s=SAN.PA&a=00&b=02&c=2014&d=00&e=14&f=2016&g=d")
+						 .userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30")
 					      .referrer("http://www.google.com")
 					      .get();
 				System.err.println(doc.body());
