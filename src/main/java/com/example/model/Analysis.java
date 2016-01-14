@@ -42,12 +42,8 @@ public class Analysis{
     	this.bench=bench;
     	this.startDate=startDate;
     	
-    	System.setProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X; de-de) AppleWebKit/523.10.3 (KHTML, like Gecko) Version/3.0.4 Safari/523.10");
-    	System.setProperty("Connection","close");
-    	System.setProperty("Accept-Encoding","gzip");
-    	System.setProperty("Accept-Charset","ISO-8859-1,UTF-8;q=0.7,*;q=0.7");
-    	System.setProperty("Cache-Control","no-cache");
-    	System.setProperty("Accept-Language","de,en;q=0.7,en-us;q=0.3");
+    	System.setProperty("http.agent ", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X; de-de) AppleWebKit/523.10.3 (KHTML, like Gecko) Version/3.0.4 Safari/523.10");
+    	System.setProperty("http.keepalive","true");
         URL stockURL = null;
         try {
             stockURL = new URL(link+bench);
