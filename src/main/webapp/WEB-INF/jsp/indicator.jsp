@@ -49,8 +49,8 @@
                         <tr>
                             <td>${analysis.asset}</td>
                             <td>${analysis.bench}</td>
-                            <td>${fn:substring(analysis.startDate, 0, 9)}</td>
-                            <td>${fn:substring(analysis.startDate, 10, 17)}</td>
+                            <td>${fn:substring(analysis.startDate, 0, 10)}</td>
+                            <td>${fn:substring(analysis.startDate, 10, 20)}</td>
                             <td>
                             	<form method="post" action="indicator/show">
               						<input type="hidden" name="id" value="${analysis.analysisId}">

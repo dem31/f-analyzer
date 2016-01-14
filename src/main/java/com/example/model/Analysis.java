@@ -41,9 +41,6 @@ public class Analysis{
     	this.asset=asset;
     	this.bench=bench;
     	this.startDate=startDate;
-    	
-    	System.setProperty("http.agent ", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X; de-de) AppleWebKit/523.10.3 (KHTML, like Gecko) Version/3.0.4 Safari/523.10");
-    	System.setProperty("http.keepalive","true");
         URL stockURL = null;
         try {
             stockURL = new URL(link+bench);
