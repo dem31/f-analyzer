@@ -79,6 +79,7 @@
             <table class="table table-bordered table-striped">
                     <thead>
                     <tr>
+                        <th>Period</th>
                     	<th>Performance</th>
                     	<th>Volume</th>
                         <th>Alpha</th>
@@ -88,6 +89,7 @@
                     <tbody>
                     <c:forEach items="${analysis.indicators}" var="a">
                         <tr>
+                            <td>${((a.period)/13)*4}</td>
                         	<td>${a.perf}</td>
                         	<td>${a.vol}</td>
                             <td>${a.beta}</td>

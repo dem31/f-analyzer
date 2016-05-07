@@ -33,7 +33,12 @@ public class IndicatorController {
     	String asset=request.getParameter("asset");
     	String bench=request.getParameter("bench");
     	String date=request.getParameter("date");
-        LocalDate point=new LocalDate(date);
+        LocalDate point;
+        try {
+            point = new LocalDate(date);
+        } catch(IllegalArgumentException ie){
+            return "redirect:/indicator";
+        }
         LocalDate lastPossibleDate=new LocalDate().minusDays(370);
         if (point.isAfter(lastPossibleDate)) point=lastPossibleDate;
         
