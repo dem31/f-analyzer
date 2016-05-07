@@ -4,6 +4,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="joda" uri="http://www.joda.org/joda/time/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
 <html>
 <head>
@@ -89,11 +90,11 @@
                     <tbody>
                     <c:forEach items="${analysis.indicators}" var="a">
                         <tr>
-                            <td>${((a.period)/13)*4}</td>
-                        	<td>${a.perf}</td>
-                        	<td>${a.vol}</td>
-                            <td>${a.beta}</td>
-                            <td>${a.alpha}</td>
+                            <td><fmt:formatNumber value="${((a.period)/13)*3}" maxFractionDigits="0"/> months</td>
+                        	<td><fmt:formatNumber value="${a.perf}" maxFractionDigits="3"/></td>
+                            <td><fmt:formatNumber value="${a.vol}" maxFractionDigits="3"/></td>
+                            <td><fmt:formatNumber value="${a.beta}" maxFractionDigits="3"/></td>
+                            <td><fmt:formatNumber value="${a.alpha}" maxFractionDigits="3"/></td>
                         </tr>
                     </c:forEach>
                     </tbody>
