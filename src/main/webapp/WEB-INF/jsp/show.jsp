@@ -90,7 +90,8 @@
                     <tbody>
                     <c:forEach items="${analysis.indicators}" var="a">
                         <tr>
-                            <td><fmt:formatNumber value="${((a.period)/13)*3}" maxFractionDigits="0"/> months</td>
+                            <c:set var="months" value="${((a.period)/13)*3}"/>
+                            <td><fmt:formatNumber value="${months}" maxFractionDigits="0"/> months</td>
                         	<td><fmt:formatNumber value="${a.perf}" maxFractionDigits="3"/></td>
                             <td><fmt:formatNumber value="${a.vol}" maxFractionDigits="3"/></td>
                             <td><fmt:formatNumber value="${a.beta}" maxFractionDigits="3"/></td>
