@@ -23,7 +23,7 @@
 		    $.ajax({
 		        url:"index_assets/"+selected,  
 		        success:function(data) {
-		        	$("#assetIDSelect .removable").each(function() {
+		        	$("#assetIDSelect").find(".removable").each(function() {
 	        		    $(this).remove();
 	        		});
 		            $.each(data, function(key, value) {
@@ -52,7 +52,7 @@
             	<label for="benchmarkIDSelect">Asset</label>
             	<div class="col-xs-4">
 				    <input type="hidden" id="benchmarkID" name="bench"  />
-				    <select id="benchmarkIDSelect">
+				    <select id="benchmarkIDSelect" class="form-control">
 				    	<option value="">-</option>
 				    	<c:forEach var="index" items="${indexes}">
 						<option value=<c:out value='"${index.key}"' escapeXml="false"/>><c:out value="${index.value}"/></option>
@@ -64,7 +64,7 @@
             	<label for="assetIDSelect">Benchmark</label>
             	<div class="col-xs-4">
               		<input type="hidden" id="assetID" name="asset"  />
-					<select id="assetIDSelect">
+					<select id="assetIDSelect" class="form-control">
 						<option value="">-</option>
 					</select>
               	</div>
