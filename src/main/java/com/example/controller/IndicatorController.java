@@ -43,9 +43,9 @@ public class IndicatorController {
         String day = String.format("%02d", Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
         link+="e="+day+"&d="+month+"&f="+year+"&b="+point.getDayOfMonth()+"&a="+(point.getMonthOfYear()-1)+"&c="+point.getYear()+"&s=";
     	
-        Analysis a=analysisService.findAnalysis(asset, bench, date+year+"-"+("0"+(String.valueOf(month)+1)).substring(2)+"-"+day);
+        Analysis a=analysisService.findAnalysis(asset, bench, date+year+"-"+String.format("%02d", Calendar.getInstance().get(Calendar.MONTH)+1)+"-"+day);
         if (a==null){
-        	a=new Analysis(link, asset, bench, date+year+"-"+("0"+(String.valueOf(month)+1)).substring(2)+"-"+day);
+        	a=new Analysis(link, asset, bench, date+year+"-"+String.format("%02d", Calendar.getInstance().get(Calendar.MONTH)+1)+"-"+day);
         	analysisService.addAnalysis(a);
         }
     	
