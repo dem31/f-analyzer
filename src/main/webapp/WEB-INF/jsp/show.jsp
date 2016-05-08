@@ -75,7 +75,7 @@
     <div class="row">
         <div class="span8 offset2">
         	<div class="page-header">
-    			<h1>"${analysis.asset}" Analysis </h1>
+    			<h1>${analysis.asset} stock Analysis </h1>
 			</div>
             <table class="table table-bordered table-striped">
                     <thead>

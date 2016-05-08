@@ -2,7 +2,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <html>
 <head>
@@ -34,6 +34,7 @@
         	<div class="page-header">
     			<h1>All constructed indicators</h1>
 			</div>
+            <jsp:useBean id="analysisList" scope="page" type="java.util.List"/>
             <c:if  test="${!empty analysisList}">
                 <table class="table table-bordered table-striped">
                     <thead>
