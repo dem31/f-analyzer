@@ -34,7 +34,7 @@
         	<div class="page-header">
     			<h1>All constructed indicators</h1>
 			</div>
-            <jsp:useBean id="analysisList" scope="page" type="java.util.List"/>
+            <%--@elvariable id="analysisList" type="java.util.List"--%>
             <c:if  test="${!empty analysisList}">
                 <table class="table table-bordered table-striped">
                     <thead>
