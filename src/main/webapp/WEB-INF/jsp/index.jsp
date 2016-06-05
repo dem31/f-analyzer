@@ -36,6 +36,7 @@
 		            $.each(data, function(key, value) {
 		                $('#assetIDSelect').append($('<option>').text(value).attr({'value': key, 'class': "removable"}));
 		            });
+                    $("#benchmarkID").val('');
 		        }
 		     });
           $('#stockForm').formValidation('revalidateField', 'bench');
