@@ -37,6 +37,7 @@
 		                $('#assetIDSelect').append($('<option>').text(value).attr({'value': key, 'class': "removable"}));
 		            });
                     $("#assetID").val('');
+                    $('#stockForm').formValidation('revalidateField', 'asset');
 		        }
 		     });
           $('#stockForm').formValidation('revalidateField', 'bench');
