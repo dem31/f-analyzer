@@ -46,36 +46,30 @@
 			<div class="page-header">
                 <h1>Construct an analysis</h1>
             </div>
-            <form method="post" action="indicator/add" class="form-vertical">
-            <div class="form-group">
+            <form method="post" action="indicator/add">
+            <div class="form-group col-lg-1">
             	<label for="benchmarkIDSelect">Asset</label>
-            	<div class="col-xs-4">
-				    <input type="hidden" id="benchmarkID" name="bench"  />
-					<%--@elvariable id="indexes" type="java.util.List"--%>
-				    <select id="benchmarkIDSelect" class="form-control">
-				    	<option value="">-</option>
-				    	<c:forEach var="index" items="${indexes}">
-						<option value=<c:out value='"${index.key}"' escapeXml="false"/>><c:out value="${index.value}"/></option>
-                  		</c:forEach>
-				    </select>
-			    </div>
+                <input type="hidden" id="benchmarkID" name="bench"  />
+                <%--@elvariable id="indexes" type="java.util.List"--%>
+                <select id="benchmarkIDSelect" class="form-control">
+                    <option value="">-</option>
+                    <c:forEach var="index" items="${indexes}">
+                        <option value=<c:out value='"${index.key}"' escapeXml="false"/>><c:out value="${index.value}"/></option>
+                    </c:forEach>
+                </select>
             </div>
-            <div class="form-group">
+            <div class="form-group col-lg-1">
             	<label for="assetIDSelect">Benchmark</label>
-            	<div class="col-xs-4">
-              		<input type="hidden" id="assetID" name="asset"  />
-					<select id="assetIDSelect" class="form-control">
-						<option value="">-</option>
-					</select>
-              	</div>
+                <input type="hidden" id="assetID" name="asset"  />
+                <select id="assetIDSelect" class="form-control">
+                    <option value="">-</option>
+                </select>
             </div>
-            <div class="form-group">
+            <div class="form-group col-lg-1">
             	<label for="date">Start Date</label>
-            	<div class="col-xs-4">
-            		<input type="date" class="form-control" id="date" name="date">
-            	</div>
+                <input type="date" class="form-control" id="date" name="date">
           	</div>
-            <div class="form-group">
+            <div class="form-group col-lg-1">
             	<button type="submit" class="btn btn-default">Submit</button>
             </div>
           </form>

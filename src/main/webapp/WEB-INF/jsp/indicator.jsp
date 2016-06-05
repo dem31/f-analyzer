@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/bootstrap.min.css' />" />
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/js/jquery.jqplot.css' />" />
     <script type="text/javascript" src="<c:url value='/resources/js/jquery.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/resources/js/bootstrap.min.js' />"></script>
    	<script type="text/javascript" src="<c:url value='/resources/js/jquery.jqplot.js' />"></script>
   	<script type="text/javascript" src="<c:url value='/resources/js/plugins/jqplot.cursor.js' />"></script>
  	<script type="text/javascript" src="<c:url value='/resources/js/plugins/jqplot.dateAxisRenderer.js' />"></script>
