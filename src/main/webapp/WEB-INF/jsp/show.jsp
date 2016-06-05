@@ -14,16 +14,18 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-   	<script type="text/javascript" src="<c:url value='/resources/js/jquery.jqplot.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/resources/js/jquery.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/resources/js/bootstrap.min.js' />"></script>
+   	<script type="text/javascript" src="<c:url value='/resources/js/jquery.jqplot.min.js' />"></script>
   	<script type="text/javascript" src="<c:url value='/resources/js/plugins/jqplot.cursor.js' />"></script>
  	<script type="text/javascript" src="<c:url value='/resources/js/plugins/jqplot.dateAxisRenderer.js' />"></script>
  	<script type="text/javascript" src="<c:url value='/resources/js/plugins/jqplot.logAxisRenderer.js' />"></script>
  	<script type="text/javascript" src="<c:url value='/resources/js/plugins/jqplot.canvasTextRenderer.js' />"></script>
  	<script type="text/javascript" src="<c:url value='/resources/js/plugins/jqplot.canvasAxisTickRenderer.js' />"></script>
- 	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/js/jquery.jqplot.css' />" />
-    <link href="//netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
-    
+ 	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/jquery.jqplot.min.css' />" />
+    <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/bootstrap.min.css' />" />
+
+    <%--@elvariable id="analysis" type="com.example.model.Analysis"--%>
     <script type="text/javascript">
     var price = [
                   <c:forEach var="path" items="${analysis.pricePath}" varStatus="status">

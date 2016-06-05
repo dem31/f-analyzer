@@ -7,7 +7,6 @@
 <head>
   <meta charset="utf-8">
   <title>Analysis</title>
-
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -52,6 +51,7 @@
             	<label for="benchmarkIDSelect">Asset</label>
             	<div class="col-xs-4">
 				    <input type="hidden" id="benchmarkID" name="bench"  />
+					<%--@elvariable id="indexes" type="java.util.List"--%>
 				    <select id="benchmarkIDSelect" class="form-control">
 				    	<option value="">-</option>
 				    	<c:forEach var="index" items="${indexes}">
@@ -82,9 +82,5 @@
 		</div>
 	</div>
 </div>
-
-
-<script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
 </body>
 </html>
