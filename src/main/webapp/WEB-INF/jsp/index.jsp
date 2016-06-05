@@ -36,7 +36,7 @@
 		            $.each(data, function(key, value) {
 		                $('#assetIDSelect').append($('<option>').text(value).attr({'value': key, 'class': "removable"}));
 		            });
-                    $("#benchmarkID").val('');
+                    $("#assetID").val('');
 		        }
 		     });
           $('#stockForm').formValidation('revalidateField', 'bench');
@@ -97,7 +97,7 @@
             <form id="stockForm" method="post" action="indicator/add">
                 <div class="row">
                 <div class="form-group col-lg-4">
-                    <label for="benchmarkIDSelect">Asset</label>
+                    <label for="benchmarkIDSelect">Benchmark</label>
                     <input type="hidden" id="benchmarkID" name="bench"  />
                     <%--@elvariable id="indexes" type="java.util.List"--%>
                     <select id="benchmarkIDSelect" class="form-control">
@@ -110,7 +110,7 @@
                 </div>
                 <div class="row">
                 <div class="form-group col-lg-4">
-                    <label for="assetIDSelect">Benchmark</label>
+                    <label for="assetIDSelect">Asset</label>
                     <input type="hidden" id="assetID" name="asset"  />
                     <select id="assetIDSelect" class="form-control">
                         <option value="">-</option>
