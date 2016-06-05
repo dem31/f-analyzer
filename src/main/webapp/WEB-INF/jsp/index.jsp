@@ -38,11 +38,13 @@
 		            });
 		        }
 		     });
+          $('#stockForm').formValidation('revalidateField', 'bench');
       });
 	  
 	  $('#assetIDSelect').change(function () {
 		    var selected = $(this).find("option:selected").val();
 		    $("#assetID").val(selected);
+            $('#stockForm').formValidation('revalidateField', 'asset');
       });
 
       $('#stockForm').formValidation({
