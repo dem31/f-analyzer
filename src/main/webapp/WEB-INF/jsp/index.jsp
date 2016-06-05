@@ -10,8 +10,11 @@
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/bootstrap.min.css' />" />
+  <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/formValidation.min.css' />" />
   <script type="text/javascript" src="<c:url value='/resources/js/jquery.min.js' />"></script>
   <script type="text/javascript" src="<c:url value='/resources/js/bootstrap.min.js' />"></script>
+  <script type="text/javascript" src="<c:url value='/resources/js/formValidation.min.js' />"></script>
+  <script type="text/javascript" src="<c:url value='/resources/js/framework/bootstrap.min.js' />"></script>
 
   <script type="text/javascript">
   $(document).ready(function(){
@@ -30,12 +33,31 @@
 		            });
 		        }
 		     });
-		});
+      });
 	  
 	  $('#assetIDSelect').change(function () {
 		    var selected = $(this).find("option:selected").val();
 		    $("#assetID").val(selected);
-		});
+      });
+
+      $('#stockForm').formValidation({
+          framework: 'bootstrap',
+          icon: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+          },
+          fields: {
+              bench: {
+                  excluded: false,
+                  validators: {
+                      notEmpty: {
+                          message: 'Please select the benchmark'
+                      }
+                  }
+              }
+          }
+      });
   });
   </script>
 </head>
@@ -46,7 +68,7 @@
 			<div class="page-header">
                 <h1>Construct an analysis</h1>
             </div>
-            <form method="post" action="indicator/add">
+            <form id="stockForm" method="post" action="indicator/add">
                 <div class="row">
                 <div class="form-group col-lg-4">
                     <label for="benchmarkIDSelect">Asset</label>
