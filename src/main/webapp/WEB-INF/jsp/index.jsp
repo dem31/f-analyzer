@@ -47,32 +47,40 @@
                 <h1>Construct an analysis</h1>
             </div>
             <form method="post" action="indicator/add">
-            <div class="form-group row col-lg-1">
-            	<label for="benchmarkIDSelect">Asset</label>
-                <input type="hidden" id="benchmarkID" name="bench"  />
-                <%--@elvariable id="indexes" type="java.util.List"--%>
-                <select id="benchmarkIDSelect" class="form-control">
-                    <option value="">-</option>
-                    <c:forEach var="index" items="${indexes}">
-                        <option value=<c:out value='"${index.key}"' escapeXml="false"/>><c:out value="${index.value}"/></option>
-                    </c:forEach>
-                </select>
-            </div>
-            <div class="form-group row col-lg-4">
-            	<label for="assetIDSelect">Benchmark</label>
-                <input type="hidden" id="assetID" name="asset"  />
-                <select id="assetIDSelect" class="form-control">
-                    <option value="">-</option>
-                </select>
-            </div>
-            <div class="form-group row col-lg-4">
-            	<label for="date">Start Date</label>
-                <input type="date" class="form-control" id="date" name="date">
-          	</div>
-            <div class="form-group row col-lg-4">
-            	<button type="submit" class="btn btn-default">Submit</button>
-            </div>
-          </form>
+                <div class="row">
+                <div class="form-group col-lg-4">
+                    <label for="benchmarkIDSelect">Asset</label>
+                    <input type="hidden" id="benchmarkID" name="bench"  />
+                    <%--@elvariable id="indexes" type="java.util.List"--%>
+                    <select id="benchmarkIDSelect" class="form-control">
+                        <option value="">-</option>
+                        <c:forEach var="index" items="${indexes}">
+                            <option value=<c:out value='"${index.key}"' escapeXml="false"/>><c:out value="${index.value}"/></option>
+                        </c:forEach>
+                    </select>
+                </div>
+                </div>
+                <div class="row">
+                <div class="form-group col-lg-4">
+                    <label for="assetIDSelect">Benchmark</label>
+                    <input type="hidden" id="assetID" name="asset"  />
+                    <select id="assetIDSelect" class="form-control">
+                        <option value="">-</option>
+                    </select>
+                </div>
+                </div>
+                <div class="row">
+                <div class="form-group col-lg-4">
+                    <label for="date">Start Date</label>
+                    <input type="date" class="form-control" id="date" name="date">
+                </div>
+                </div>
+                <div class="row">
+                <div class="form-group col-lg-4">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+                </div>
+            </form>
 		</div>
 	</div>
 </div>

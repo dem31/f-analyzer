@@ -37,13 +37,14 @@
 			</div>
             <%--@elvariable id="analysisList" type="java.util.List"--%>
             <c:if  test="${!empty analysisList}">
-                <table class="table table-bordered table-striped">
+                <table class="table table-striped">
                     <thead>
                     <tr>
                         <th>Asset</th>
                         <th>Benchmark</th>
                         <th>First day</th>
                         <th>Last day</th>
+                        <th class="col-md-1"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -56,7 +57,7 @@
                             <td>
                             	<form method="post" action="indicator/show">
               						<input type="hidden" name="id" value="${analysis.analysisId}">
-            						<button type="submit" class="btn btn-default">Submit</button>
+            						<button type="submit" class="btn btn-default">View</button>
           						</form>
 							</td>
                         </tr>
