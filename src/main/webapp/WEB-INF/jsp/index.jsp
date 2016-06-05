@@ -15,6 +15,12 @@
   <script type="text/javascript" src="<c:url value='/resources/js/bootstrap.min.js' />"></script>
   <script type="text/javascript" src="<c:url value='/resources/js/formValidation.min.js' />"></script>
   <script type="text/javascript" src="<c:url value='/resources/js/framework/bootstrap.min.js' />"></script>
+  <style type="text/css">
+      #stockForm .form-control-feedback {
+          top: 0;
+          right: -15px;
+      }
+  </style>
 
   <script type="text/javascript">
   $(document).ready(function(){
@@ -53,6 +59,24 @@
                   validators: {
                       notEmpty: {
                           message: 'Please select the benchmark'
+                      }
+                  }
+              },
+              asset: {
+                  excluded: false,
+                  validators: {
+                      notEmpty: {
+                          message: 'Please select the asset'
+                      }
+                  }
+              },
+              date: {
+                  validators: {
+                      notEmpty: {
+                          message: 'Please select the benchmark'
+                      },
+                      date: {
+                          message: 'The date is not valid'
                       }
                   }
               }
