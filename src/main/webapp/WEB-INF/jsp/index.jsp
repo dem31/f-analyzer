@@ -10,7 +10,7 @@
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/bootstrap.min.css' />" />
-  <script type="text/javascript" src="<c:url value='/resources/js/jquery-old.min.js' />"></script>
+  <script type="text/javascript" src="<c:url value='/resources/js/jquery.min.js' />"></script>
   <script type="text/javascript" src="<c:url value='/resources/js/bootstrap.min.js' />"></script>
 
   <script type="text/javascript">
