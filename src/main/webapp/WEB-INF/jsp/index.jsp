@@ -17,7 +17,6 @@
   <script type="text/javascript" src="<c:url value='/resources/js/framework/bootstrap.min.js' />"></script>
   <style type="text/css">
       #stockForm .form-control-feedback {
-          top: 0;
           right: -15px;
       }
   </style>
@@ -73,7 +72,7 @@
               date: {
                   validators: {
                       notEmpty: {
-                          message: 'Please select the benchmark'
+                          message: 'Please pick the date'
                       },
                       date: {
                           message: 'The date is not valid'
